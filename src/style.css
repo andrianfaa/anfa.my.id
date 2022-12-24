@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-light-background font-sans;
+    @apply dark:bg-dark-background;
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl;
+  }
+}
