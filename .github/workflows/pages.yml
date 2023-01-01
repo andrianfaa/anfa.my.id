@@ -29,7 +29,6 @@ jobs:
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.1
-        run: echo "GITHUB_TOKEN=${{ secrets.TOKEN_SECRET }}" >> $GITHUB_OUTPUT
         with:
           BRANCH: production # Nama branch yang akan digunakan.
           FOLDER: out # Folder yang akan dideploy
