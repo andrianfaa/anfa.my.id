@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 
 import { LocalStorage } from "@/utils";
 
-type Themes = "light" | "dark";
+export type Themes = "light" | "dark";
+
 type UseThemeReturnTypes = {
   toggleTheme: () => void;
   currentTheme: string;
 };
 
 export default function useTheme(): UseThemeReturnTypes {
-  const [theme, setTheme] = useState<Themes>("light");
+  const [currentTheme, setTheme] = useState<Themes>("light");
 
   function toggleTheme() {
     setTheme((state) => {
@@ -22,7 +23,7 @@ export default function useTheme(): UseThemeReturnTypes {
   }
 
   useEffect(() => {
-    if (!window) return;
+    if (typeof window === "undefined") return;
 
     const getLocalTheme = LocalStorage.get<Themes | null>("theme");
 
@@ -32,27 +33,31 @@ export default function useTheme(): UseThemeReturnTypes {
   }, []);
 
   useEffect(() => {
-    if (!window || !document) return;
+    if (typeof window === "undefined" || typeof document === "undefined")
+      return;
 
     const html =
       document.querySelector("html") || document.documentElement || null;
 
     if (html) {
-      if (theme === "dark") {
+      if (currentTheme === "dark") {
         html.classList.add("dark");
       } else {
         html.classList.remove("dark");
       }
     }
 
-    const timeout = setTimeout(() => localStorage.set("theme", theme), 500);
+    const timeout = setTimeout(
+      () => LocalStorage.set("theme", currentTheme),
+      500
+    );
 
     // eslint-disable-next-line consistent-return
     return () => clearTimeout(timeout);
-  }, [theme]);
+  }, [currentTheme]);
 
   return {
     toggleTheme,
-    currentTheme: theme
+    currentTheme
   };
 }
