@@ -3,9 +3,6 @@ on:
   push:
     branches: [master]
 
-env:
-  GITHUB_TOKEN: ${{ env.TOKEN_SECRET }}
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -32,6 +29,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.1
         with:
+          GITHUB_TOKEN: ${{ env.TOKEN_SECRET }}
           BRANCH: production # Nama branch yang akan digunakan.
           FOLDER: out # Folder yang akan dideploy
           CLEAN: true # Hapus file di dalam branch
