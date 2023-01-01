@@ -19,7 +19,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.lock') }}
 
       - name: Install 🔧
-        run: yarn install
+        run: npm install
 
       - name: Build 🔧
         run: |
