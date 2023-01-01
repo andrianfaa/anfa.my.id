@@ -25,7 +25,6 @@ jobs:
         run: |
           npm run export
           touch out/.nojekyll
-          echo "GITHUB_TOKEN=${{ secrets.TOKEN_SECRET }}" >> $GITHUB_OUTPUT
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.1
