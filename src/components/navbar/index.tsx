@@ -65,7 +65,6 @@ export default function Navbar() {
               }
               alt="Anfa Website Logo"
               className={clsx("h-8 w-8")}
-              unoptimized
             />
           </Link>
 
