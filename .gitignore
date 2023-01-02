@@ -8,3 +8,5 @@ next-env.d.ts
 .env.production*
 .env.local*
 .env
+
+/src/constants/additionalTags.ts

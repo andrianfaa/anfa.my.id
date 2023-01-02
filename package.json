@@ -6,15 +6,18 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build",
+    "build": "npm-run-all 'generate:favicons' 'build:app'",
+    "build:app": "next build",
     "export": "next build && next export",
-    "lint": "eslint --fix './src/**/*.{ts,tsx}'"
+    "lint": "eslint --fix './src/**/*.{ts,tsx}'",
+    "postinstall": "node './scripts/check.js'",
+    "postbuild": "next-sitemap",
+    "generate:favicons": "node './scripts/generate-favicon/index.js'"
   },
   "author": "https://github.com/andrianfaa",
   "license": "ISC",
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
-    "@types/node": "^18.11.17",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
@@ -29,6 +32,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "next-sitemap": "^3.1.43",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.20",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^3.2.4",
@@ -38,6 +43,7 @@
     "@svgr/webpack": "^6.5.1",
     "@vercel/analytics": "^0.1.6",
     "clsx": "^1.2.1",
+    "favicons": "^7.0.2",
     "next": "^13.1.1",
     "next-seo": "^5.15.0",
     "react": "^18.2.0",
