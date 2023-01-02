@@ -13,6 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
       "Andrian Fadhilla (Also known as Anfa) is a young React.js Developer and also a Computer Science student based in Indonesia. He loves to code, music, and coffee.",
     additionalMetaTags: [
       {
+        name: "robots",
+        content: "all"
+      },
+      {
         name: "keywords",
         content: [
           "Andrian",
