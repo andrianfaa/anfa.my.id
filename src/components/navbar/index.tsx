@@ -1,12 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import LogoPrimaryDark from "@/assets/logo-primary-dark.svg";
-import LogoPrimaryLight from "@/assets/logo-primary.svg";
-
 import { useTheme } from "@/hooks";
+import Image from "next/image";
 import NavbarMenu from "./navbar-menu";
 import NavbarThemeToggler from "./navbar-theme-toggler";
 import NavbarToggler from "./navbar-toggler";
@@ -60,8 +58,12 @@ export default function Navbar() {
         >
           <Link className="h-8 w-8" href="/" title="Home">
             <Image
+              height={32}
+              width={32}
               src={
-                currentTheme === "light" ? LogoPrimaryLight : LogoPrimaryDark
+                currentTheme === "light"
+                  ? "/assets/logo-primary.svg"
+                  : "/assets/logo-primary-dark.svg"
               }
               alt="Anfa Website Logo"
               className={clsx("h-8 w-8")}

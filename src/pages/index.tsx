@@ -3,7 +3,6 @@ import clsx from "clsx";
 import { ExternalLink } from "@/components";
 import { ProjectCard } from "@/components/cards";
 import { project, social_media } from "@/data";
-import { ArrowIcon, WaveIcon } from "@/icons";
 
 type SosmedTypes = {
   url: string;
@@ -60,43 +59,13 @@ export default function HomePage() {
             >
               Andrian Fadhilla,
             </span>{" "}
-            a young React.js Developer based in Bekasi,{" "}
-            <span className="relative inline-block w-auto">
-              Indonesia.
-              <WaveIcon
-                className={clsx(
-                  "text-light-primary dark:text-dark-primary",
-                  "hidden w-full sm:block",
-                  "absolute -bottom-2 z-0"
-                )}
-              />
-              <span
-                className={clsx(
-                  "hidden sm:flex",
-                  "absolute top-[110%] -right-10 z-0",
-                  "flex-col"
-                )}
-              >
-                <ArrowIcon
-                  className={clsx(
-                    "text-light-primary dark:text-dark-primary",
-                    "h-6 w-6 md:h-8 md:w-8"
-                  )}
-                />
-                <span
-                  className="ml-6 text-2xl md:text-3xl lg:text-4xl"
-                  title="Indonesian flag"
-                >
-                  🇮🇩
-                </span>
-              </span>
-            </span>
+            a young React.js Developer based in Bekasi, Indonesia.
           </h1>
 
           <div
             className={clsx(
               "w-full",
-              "flex flex-row flex-wrap items-center gap-4",
+              // "flex flex-row flex-wrap items-center gap-4",
               "md:text-lg"
             )}
           >
@@ -106,7 +75,11 @@ export default function HomePage() {
               return (
                 <ExternalLink
                   key={key}
-                  className={clsx("link", "py-3")}
+                  className={clsx(
+                    "link",
+                    "mr-3 last:mr-0"
+                    // "py-3"
+                  )}
                   href={url}
                   title={`${label} - Andrian Fadhilla`}
                 >

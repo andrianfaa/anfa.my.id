@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
     additionalMetaTags: [
       {
         name: "robots",
-        content: "index, follow"
+        content: "all"
       },
       {
         name: "keywords",

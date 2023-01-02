@@ -24,16 +24,13 @@ function ExternalLink({
       href={href}
       target="_blank"
       title={title}
-      className={clsx(className, "relative inline-block", "mr-4")}
+      className={clsx(className, "relative inline-block")}
       rel="noopener noreferrer"
       {...props}
     >
       {children}{" "}
       <FiExternalLink
-        className={clsx(
-          "absolute z-0 ml-1 inline align-top",
-          "text-xs md:text-sm"
-        )}
+        className={clsx("ml-1 inline-block", "text-xs md:text-sm")}
       />
     </Link>
   );

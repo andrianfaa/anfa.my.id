@@ -18,7 +18,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        display: ["Figtree", ...defaultTheme.fontFamily.sans]
+        display: ["Figtree", "Inter", ...defaultTheme.fontFamily.sans]
       },
       colors: {
         light: {
