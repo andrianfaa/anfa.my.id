@@ -4,8 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: true
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   env: {
     MAX_FEATURED_PROJECT: 5
