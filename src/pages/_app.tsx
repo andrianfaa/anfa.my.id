@@ -1,6 +1,7 @@
 import type { DefaultSeoProps } from "next-seo";
 import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Navbar } from "@/components";
 
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Analytics mode="production" />
       <DefaultSeo {...defaultSeo} />
       <Navbar />
       <Component {...pageProps} />
