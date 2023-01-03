@@ -12,16 +12,17 @@ function checkAdditionalTagFile() {
       `import type { DefaultSeoProps } from "next-seo";
 
 type AdditionalTagTypes = {
-meta: DefaultSeoProps["additionalMetaTags"];
-link: DefaultSeoProps["additionalLinkTags"];
+  meta: DefaultSeoProps["additionalMetaTags"];
+  link: DefaultSeoProps["additionalLinkTags"];
 };
 
 const additionalTag: AdditionalTagTypes = {
-meta: [],
-link: []
+  meta: [],
+  link: []
 };
 
-export default additionalTag;`
+export default additionalTag;
+`
     );
   }
 }
