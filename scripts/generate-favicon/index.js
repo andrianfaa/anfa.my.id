@@ -109,6 +109,12 @@ async function buildFavicons() {
       });
     });
 
+    // copy /public/favicons/favicon.ico to /public
+    fs.copyFileSync(
+      `${targetPath}/favicon.ico`,
+      `${process.cwd()}/public/favicon.ico`
+    );
+
     const json = HTMLToJSON(response.html);
 
     // rewrite additionalTags.ts file

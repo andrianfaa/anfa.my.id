@@ -2,6 +2,8 @@
 **/.next/
 **/out/
 
+public/favicons/
+
 next-env.d.ts
 
 .env.development*
@@ -9,4 +11,5 @@ next-env.d.ts
 .env.local*
 .env
 
-/src/constants/additionalTags.ts
+src/constants/additionalTags.ts
+public/favicon.ico
