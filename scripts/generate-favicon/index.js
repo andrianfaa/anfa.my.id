@@ -5,8 +5,6 @@ const fs = require("fs");
 
 const { HTMLToJSON } = require("./helpers");
 
-// const targetPath = path.resolve(`${process.cwd()}/public/favicons`);
-
 const defaultConfiguration = {
   ...defaultConfig.defaults,
   path: "/favicons",
@@ -40,6 +38,8 @@ const defaultConfiguration = {
   loadManifestWithCredentials: false,
   manifestMaskable: true
 };
+
+const publicPath = path.resolve(process.cwd(), "public");
 
 function cleanDirectory(files, filePath) {
   files
@@ -110,6 +110,10 @@ async function buildFavicons() {
     });
 
     // copy /public/favicons/favicon.ico to /public
+    if (fs.existsSync(`${publicPath}/favicon.ico`)) {
+      fs.rmSync(`${publicPath}/favicon.ico`);
+    }
+
     fs.copyFileSync(
       `${targetPath}/favicon.ico`,
       `${process.cwd()}/public/favicon.ico`
