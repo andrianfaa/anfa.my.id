@@ -3,6 +3,9 @@
 **/out/
 
 public/favicons/
+public/favicon.ico
+public/robots.txt
+public/sitemap*.xml
 
 next-env.d.ts
 
@@ -12,4 +15,3 @@ next-env.d.ts
 .env
 
 src/constants/additionalTags.ts
-public/favicon.ico

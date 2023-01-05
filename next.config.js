@@ -7,7 +7,12 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   env: {
-    MAX_FEATURED_PROJECT: 5
+    BASE_URL:
+      process.env.NODE_ENV === "production"
+        ? "https://www.anfa.my.id"
+        : "http://localhost:3000",
+    MAX_FEATURED_PROJECT: 5,
+    MEDIUM_PROFILE_USERNAME: "@andrianfaa" // used to fetch your medium stories
   }
 };
 
