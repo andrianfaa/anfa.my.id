@@ -1,17 +1,28 @@
 {
   "projects": [
     {
-      "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "slug": "portfolio-20221224",
+      "name": "My Personal Portfolio Website - anfa.my.id",
+      "description": "This is my personal portfolio website project as a place for me to share the projects I made, the posts I made on Medium, and share what I can share.",
       "content": "",
+      "url": "/portfolio/portfolio-20221224",
       "live_url": "https://anfa.my.id",
+      "created_at": "2022-12-24",
       "images": {
-        "thumbnail": "/path/to/thumbnail"
+        "thumbnail": "https://ik.imagekit.io/lzkn3c9xkpp/Portfolio/anfa_Jee4eono6.png?ik-sdk-version=javascript-1.4.3&updatedAt=1672946666786"
       },
       "tech_stacks": [
         {
           "label": "Next.js",
           "icon_id": "nextjs"
+        },
+        {
+          "label": "React.js",
+          "icon_id": "reactjs"
+        },
+        {
+          "label": "Typescript",
+          "icon_id": "typescript"
         },
         {
           "label": "Sass",
@@ -20,54 +31,106 @@
         {
           "label": "TailwindCSS",
           "icon_id": "tailwindcss"
+        },
+        {
+          "label": "Vercel",
+          "icon_id": "vercel"
         }
       ],
-      "categories": ["Next.js", "Sass", "TailwindCSS"]
+      "categories": [
+        "Next.js",
+        "Sass",
+        "TailwindCSS",
+        "Vercel",
+        "React.js",
+        "Typescript"
+      ]
     },
     {
-      "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "slug": "portfolio-20220917",
+      "name": "Dicoding Submission - CatatanQu.",
+      "description": "This is a Project submission as a requirement for passing the React Web Developer Intermediate class at dicoding.com. in this project we are required to make an application to store notes online using the API from dicoding.",
       "content": "",
-      "live_url": "https://anfa.my.id",
+      "url": "/portfolio/portfolio-20220917",
+      "live_url": "https://my-dicoding-submissions.vercel.app/",
+      "created_at": "2022-09-17",
       "images": {
-        "thumbnail": "/path/to/thumbnail"
+        "thumbnail": ""
       },
       "tech_stacks": [
         {
-          "label": "Next.js",
-          "icon_id": "nextjs"
+          "label": "React.js",
+          "icon_id": "reactjs"
         },
         {
           "label": "Sass",
           "icon_id": "sass"
         },
         {
-          "label": "TailwindCSS",
-          "icon_id": "tailwindcss"
+          "label": "WindiCSS",
+          "icon_id": "windicss"
         }
       ],
-      "categories": ["Next.js", "Sass", "TailwindCSS"]
+      "categories": ["React.js", "Sass", "WindiCSS"]
     },
     {
-      "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "slug": "portfolio-20220110",
+      "name": "MaileHereko - Movie App",
+      "description": "MaileHereko is a website that displays a list of movies and tv shows that I have watched so far. I created a website to hone my React.js and CSS skills.",
       "content": "",
-      "live_url": "https://anfa.my.id",
+      "url": "/portfolio/portfolio-20220110",
+      "live_url": "https://mailehereko-movie-app.vercel.app",
+      "created_at": "2022-01-10",
       "images": {
-        "thumbnail": "/path/to/thumbnail"
+        "thumbnail": ""
       },
       "tech_stacks": [
         {
-          "label": "Next.js",
-          "icon_id": "nextjs"
+          "label": "React.js",
+          "icon_id": "reactjs"
         },
         {
           "label": "Sass",
           "icon_id": "sass"
+        },
+        {
+          "label": "Redux",
+          "icon_id": "redux"
         }
       ],
-      "categories": ["Next.js", "Sass"]
+      "categories": ["React.js", "Sass", "Redux Toolkit"]
+    },
+    {
+      "slug": "portfolio-20211221",
+      "name": "Dicoding Submission - Restaurant Catalogue PWA",
+      "description": "This is a Project submission as a requirement for passing the Front End Web Developer Expert class at dicoding.com. in this project we are required to make a single-page application using the API from the course, the data from the API is in the form of restaurant names, restaurant ratings, restaurant locations, and menus in the restaurant.",
+      "content": "",
+      "url": "/portfolio/portfolio-20211221",
+      "live_url": "https://restaurant-catalogue-pwa.vercel.app",
+      "created_at": "2021-12-21",
+      "images": {
+        "thumbnail": ""
+      },
+      "tech_stacks": [
+        {
+          "label": "Webpack",
+          "icon_id": "webpack"
+        },
+        {
+          "label": "Sass",
+          "icon_id": "sass"
+        },
+        {
+          "label": "Jasmine",
+          "icon_id": "jasmine"
+        },
+        {
+          "label": "Puppeteer",
+          "icon_id": "puppeteer"
+        }
+      ],
+      "categories": ["Next.js", "Sass", "Webpack", "Puppeteer"]
     }
   ],
-  "featured_project": [0, 1, 2]
+  "featured_project": [0, 1, 2, 3]
 }

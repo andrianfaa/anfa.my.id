@@ -1,13 +1,11 @@
 import clsx from "clsx";
-import { formatDistanceToNowStrict as formatDate } from "date-fns";
-import htmr from "htmr";
 import Link from "next/link";
 
 import { ExternalLink } from "@/components";
-import { ProjectCard } from "@/components/cards";
+import { ProjectCard, StoryCard } from "@/components/cards";
 import { project, social_media } from "@/data";
 import { HttpResponse, StoriesResponseTypes } from "@/types";
-// import { FetchWithCache } from "@/utils";
+import { FetchWithCache } from "@/utils";
 
 import { MediumLogoText } from "@/assets";
 import { SiMedium } from "react-icons/si";
@@ -22,13 +20,13 @@ type HomePageProps = {
 };
 
 export async function getServerSideProps() {
-  const stories: HttpResponse<StoriesResponseTypes> = await fetch(
+  const stories: HttpResponse<StoriesResponseTypes> = await FetchWithCache(
     `${(process.env.BASE_URL as string) || ""}/api/stories`,
-    // "medium-stories",
+    "stories",
     {
       method: "GET"
     }
-  ).then((res) => res.json());
+  );
 
   return {
     props: {
@@ -38,6 +36,9 @@ export async function getServerSideProps() {
 }
 
 export default function HomePage({ stories }: HomePageProps) {
+  const MAX_FEATURED_PROJECT =
+    (process.env.MAX_FEATURED_PROJECT as unknown as number) || 5;
+
   // sosmed = social media
   const sosmed: SosmedTypes[] = [
     {
@@ -142,16 +143,12 @@ export default function HomePage({ stories }: HomePageProps) {
 
             <div
               className={clsx(
-                "flex flex-col items-center justify-center gap-4 lg:flex-row lg:flex-wrap lg:gap-6",
+                "flex flex-col items-stretch justify-center gap-4 lg:flex-row lg:flex-wrap lg:gap-6",
                 "mt-6"
               )}
             >
               {project.featured_project
-                .slice(
-                  0,
-                  ((process.env.MAX_FEATURED_PROJECT as unknown as number) ||
-                    5) - 1
-                )
+                .slice(0, MAX_FEATURED_PROJECT)
                 .map((projectIndex, index) => {
                   const data = project.projects[projectIndex];
                   const key = index.toString();
@@ -162,15 +159,19 @@ export default function HomePage({ stories }: HomePageProps) {
                     return (
                       <ProjectCard
                         key={key}
-                        url={data.live_url}
+                        url={data.url}
                         description={data.description}
                         tech_stacks={data.tech_stacks}
                         title={data.name}
+                        created_at={data.created_at}
+                        categories={data.categories}
                         className={clsx(
-                          "lg:h-72",
+                          "min-h-[150px]",
+                          // "min-h-[150px] lg:max-h-[380px] lg:min-h-[unset]",
                           "shadow-lg shadow-light-background-200 dark:shadow-dark-background"
                         )}
                         showThumbnail
+                        thumbnail={data.images.thumbnail}
                         clickableTitle
                         clickableImage
                       />
@@ -180,10 +181,12 @@ export default function HomePage({ stories }: HomePageProps) {
                   return (
                     <ProjectCard
                       key={key}
-                      url={data.live_url}
+                      url={data.url}
                       description={data.description}
                       tech_stacks={data.tech_stacks}
                       title={data.name}
+                      created_at={data.created_at}
+                      categories={data.categories}
                       className={clsx(
                         "lg:max-w-[calc(100%/2-12px)]",
                         "shadow-lg shadow-light-background-200 dark:shadow-dark-background"
@@ -192,6 +195,23 @@ export default function HomePage({ stories }: HomePageProps) {
                     />
                   );
                 })}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/portfolio"
+                title="See more at Portfolio"
+                className={clsx(
+                  "transition-all duration-300 ease-in-out",
+                  "rounded-lg py-4 px-6",
+                  "border border-light-text dark:border-dark-text",
+                  // "bg-white dark:bg-dark-background-200",
+                  "hover:shadow-lg hover:shadow-light-background-300 dark:hover:shadow-slate-900",
+                  "focus:shadow-light-background-300 dark:hover:shadow-lg dark:focus:shadow-lg dark:focus:shadow-slate-900"
+                )}
+              >
+                see more at <span className="font-bold">Portfolio</span>
+              </Link>
             </div>
           </section>
         </div>
@@ -233,7 +253,7 @@ export default function HomePage({ stories }: HomePageProps) {
                 "mt-6 lg:mt-8"
               )}
             >
-              {stories.data?.items
+              {stories?.data?.items
                 .slice(0, 5)
                 .map(
                   (
@@ -243,63 +263,15 @@ export default function HomePage({ stories }: HomePageProps) {
                     const key = index.toString();
 
                     return (
-                      <div
+                      <StoryCard
                         key={key}
-                        itemScope
-                        itemType="https://schema.org/BlogPosting"
-                        className={clsx(
-                          "bg-white dark:bg-dark-background-100",
-                          "p-4 md:p-6",
-                          "rounded-lg lg:rounded-xl",
-                          "shadow-lg shadow-light-background-200 dark:shadow-slate-900"
-                        )}
-                      >
-                        <Link
-                          href={guid}
-                          title={title}
-                          className={clsx(
-                            "font-display font-semibold tracking-tight line-clamp-3",
-                            "text-light-headline dark:text-dark-headline",
-                            "text-xl md:text-2xl",
-                            "mb-2 md:mb-4"
-                          )}
-                          itemProp="backstory"
-                          itemScope
-                          itemType="https://schema.org/CreativeWork"
-                        >
-                          <span itemProp="headline">{title}</span>
-                        </Link>
-
-                        <p
-                          className={clsx(
-                            "render-only-text",
-                            "text-sm md:text-base",
-                            "line-clamp-4 lg:line-clamp-5"
-                          )}
-                          itemProp="articleBody"
-                        >
-                          {htmr(
-                            content_html
-                              .replace(/(<([^>]+)>)/gi, " ")
-                              .slice(0, 750)
-                          )}
-                        </p>
-
-                        <div className={clsx("text-headline text-sm", "mt-4")}>
-                          <span itemType="creator" className="font-semibold">
-                            {author.name}
-                          </span>{" "}
-                          -{" "}
-                          <time
-                            dateTime={date_published}
-                            itemProp="datePublished"
-                          >
-                            {formatDate(new Date(date_published), {
-                              addSuffix: true
-                            })}
-                          </time>
-                        </div>
-                      </div>
+                        author={author}
+                        content_html={content_html}
+                        date_published={date_published}
+                        guid={guid}
+                        title={title}
+                        className={clsx("w-full lg:max-w-[calc(100%/3-8px)]")}
+                      />
                     );
                   }
                 )}
