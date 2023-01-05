@@ -7,7 +7,7 @@ import { ExternalLink } from "@/components";
 import { ProjectCard } from "@/components/cards";
 import { project, social_media } from "@/data";
 import { HttpResponse, StoriesResponseTypes } from "@/types";
-import { FetchWithCache } from "@/utils";
+// import { FetchWithCache } from "@/utils";
 
 import { MediumLogoText } from "@/assets";
 import { SiMedium } from "react-icons/si";
@@ -22,13 +22,13 @@ type HomePageProps = {
 };
 
 export async function getServerSideProps() {
-  const stories: HttpResponse<StoriesResponseTypes> = await FetchWithCache(
+  const stories: HttpResponse<StoriesResponseTypes> = await fetch(
     `${(process.env.BASE_URL as string) || ""}/api/stories`,
-    "medium-stories",
+    // "medium-stories",
     {
       method: "GET"
     }
-  );
+  ).then((res) => res.json());
 
   return {
     props: {
