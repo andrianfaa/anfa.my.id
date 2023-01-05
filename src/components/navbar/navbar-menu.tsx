@@ -37,7 +37,7 @@ function NavbarMenu({ data, isOpened, theme }: NavbarMenuProps) {
           "transition-transform duration-300 ease-in-out",
           "shadow shadow-light-background-300",
           "container rounded-3xl bg-white p-4 lg:p-0",
-          "dark:bg-dark-background-300 dark:shadow-dark-background-100",
+          "dark:bg-dark-background-200 dark:shadow-dark-background-100",
           "lg:bg-transparent lg:shadow-none dark:lg:bg-transparent dark:lg:shadow-none",
           isOpened ? "scale-100" : "scale-95 lg:scale-100"
         )}
