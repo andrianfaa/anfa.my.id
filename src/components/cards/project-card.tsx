@@ -37,6 +37,7 @@ function ProjectCard({
     thumbnail ||
     "https://via.placeholder.com/1280x720/?text=Supposed+to+be+thumbnail";
   const baseIconStackClassName = clsx("h-6 w-6");
+  const baseCardBackground = "bg-light-background dark:bg-dark-background-200";
 
   if (!clickableTitle && !clickableImage && !clickableTitle) {
     throw new Error("ERROR: ProjectCard Component: Do not disable all clicks!");
@@ -50,12 +51,13 @@ function ProjectCard({
           title={title}
           className={clsx(
             "relative w-full overflow-hidden",
-            "bg-white dark:bg-dark-background-200",
-            "shadow-lg shadow-light-background-300 dark:shadow-slate-900",
+            baseCardBackground,
             "rounded-lg lg:rounded-xl",
             "flex flex-col lg:flex-row lg:items-stretch",
             className
           )}
+          itemScope
+          itemType="https://schema.org/CreativeWork"
         >
           <div
             className={clsx(
@@ -76,6 +78,7 @@ function ProjectCard({
                 "text-xl md:text-2xl lg:text-3xl",
                 "mb-2 md:mb-4"
               )}
+              itemProp="headline"
             >
               {title}
             </p>
@@ -86,6 +89,7 @@ function ProjectCard({
                 "text-sm md:text-base",
                 "mb-4"
               )}
+              itemProp="about"
             >
               {description}
             </p>
@@ -120,12 +124,13 @@ function ProjectCard({
         title={title}
         className={clsx(
           "relative w-full overflow-hidden",
-          "bg-white dark:bg-dark-background-200",
+          baseCardBackground,
           "p-4 md:p-6",
-          "shadow-lg shadow-light-background-300 dark:shadow-slate-900",
           "rounded-lg lg:rounded-xl",
           className
         )}
+        itemScope
+        itemType="https://schema.org/CreativeWork"
       >
         <div
           className={clsx(
@@ -146,11 +151,15 @@ function ProjectCard({
             "text-xl md:text-2xl",
             "mb-2 md:mb-4"
           )}
+          itemProp="headline"
         >
           {title}
         </p>
 
-        <p className={clsx("line-clamp-4", "text-sm md:text-base", "mb-4")}>
+        <p
+          className={clsx("line-clamp-4", "text-sm md:text-base", "mb-4")}
+          itemProp="about"
+        >
           {description}
         </p>
 
@@ -173,12 +182,13 @@ function ProjectCard({
       <div
         className={clsx(
           "relative w-full overflow-hidden",
-          "bg-white dark:bg-dark-background-200",
-          "shadow-lg shadow-light-background-300 dark:shadow-slate-900",
+          baseCardBackground,
           "rounded-lg lg:rounded-xl",
           "flex flex-col lg:flex-row lg:items-stretch",
           className
         )}
+        itemScope
+        itemType="https://schema.org/CreativeWork"
       >
         <div
           className={clsx(
@@ -201,6 +211,7 @@ function ProjectCard({
               "text-xl md:text-2xl lg:text-3xl",
               "mb-2 md:mb-4"
             )}
+            itemProp="headline"
           >
             {title}
           </Link>
@@ -211,6 +222,7 @@ function ProjectCard({
               "text-sm md:text-base",
               "mb-4"
             )}
+            itemProp="about"
           >
             {description}
           </p>
@@ -232,6 +244,7 @@ function ProjectCard({
             href={url}
             title={title}
             className="hidden w-full lg:flex lg:w-1/2 lg:flex-1"
+            tabIndex={-1}
           >
             <img
               src={image}
@@ -260,12 +273,13 @@ function ProjectCard({
     <div
       className={clsx(
         "relative w-full overflow-hidden",
-        "bg-white dark:bg-dark-background-200",
+        baseCardBackground,
         "p-4 md:p-6",
-        "shadow-lg shadow-light-background-300 dark:shadow-slate-900",
         "rounded-lg lg:rounded-xl",
         className
       )}
+      itemScope
+      itemType="https://schema.org/CreativeWork"
     >
       <div
         className={clsx(
@@ -288,11 +302,15 @@ function ProjectCard({
           "text-xl md:text-2xl",
           "mb-2 md:mb-4"
         )}
+        itemProp="headline"
       >
         {title}
       </Link>
 
-      <p className={clsx("line-clamp-4", "text-sm md:text-base", "mb-4")}>
+      <p
+        className={clsx("line-clamp-4", "text-sm md:text-base", "mb-4")}
+        itemProp="about"
+      >
         {description}
       </p>
 

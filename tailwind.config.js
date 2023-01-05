@@ -26,12 +26,12 @@ module.exports = {
           primary: "#2563eb", // blue-600
           // background: "#F7F7F7"
           background: {
-            DEFAULT: "#F4F7F5",
-            100: "#F1F4F2",
-            200: "#E6EAE9",
-            300: "#D8DCDC",
-            400: "#BCC0C2",
-            500: "#BCC0C2"
+            DEFAULT: "#f8fafc",
+            100: "#EBEDF0",
+            200: "#DDDFE3",
+            300: "#C1C4C9",
+            400: "#A5A9AF",
+            500: "#898D95"
           },
           headline: "#0f172a",
           text: "#334155"
@@ -41,11 +41,11 @@ module.exports = {
           background: {
             // DEFAULT: "#111827",
             DEFAULT: "#191F2E",
-            100: "#191F2E",
-            200: "#202634",
-            300: "#2E3441",
-            400: "#4A505B",
-            500: "#BCC0C2"
+            100: "#272D3B",
+            200: "#353B48",
+            300: "#515662",
+            400: "#6D727C",
+            500: "#898D95"
           },
           headline: "#ffffff",
           text: "#dbeafe"

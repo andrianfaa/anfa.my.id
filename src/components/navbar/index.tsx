@@ -45,7 +45,7 @@ export default function Navbar() {
           "container px-4 lg:pl-6",
           "rounded-full bg-white",
           "shadow shadow-light-background-300",
-          "dark:bg-dark-background-300 dark:shadow-slate-900",
+          "dark:bg-dark-background-200 dark:shadow-dark-background",
           "lg:flex lg:flex-row lg:items-center"
         )}
       >

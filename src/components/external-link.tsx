@@ -10,6 +10,7 @@ type ExternalLinkProps = LinkProps & {
   title: string;
   children: ReactNode;
   className?: string;
+  itemProp?: string;
 };
 
 function ExternalLink({
@@ -17,11 +18,13 @@ function ExternalLink({
   title,
   children,
   className,
+  itemProp,
   ...props
 }: ExternalLinkProps) {
   return (
     <Link
       href={href}
+      itemProp={itemProp}
       target="_blank"
       title={title}
       className={clsx(className, "relative inline-block")}
@@ -29,9 +32,7 @@ function ExternalLink({
       {...props}
     >
       {children}{" "}
-      <FiExternalLink
-        className={clsx("ml-1 inline-block", "text-xs md:text-sm")}
-      />
+      <FiExternalLink className={clsx("inline-block", "text-xs md:text-sm")} />
     </Link>
   );
 }

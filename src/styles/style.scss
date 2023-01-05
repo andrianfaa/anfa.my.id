@@ -80,4 +80,20 @@
       );
     }
   }
+
+  .text-headline {
+    @apply text-light-headline dark:text-dark-headline;
+  }
+
+  .render-only-text {
+    * {
+      appearance: none;
+      @apply font-sans text-base font-normal;
+      @apply text-light-text dark:text-dark-text;
+    }
+
+    img {
+      @apply hidden;
+    }
+  }
 }
