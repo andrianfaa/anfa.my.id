@@ -24,6 +24,8 @@ export default function App({ Component, pageProps }: AppProps) {
         content: [
           "Andrian",
           "Fadhilla",
+          "Andrianfaa",
+          "Anfa",
           "React.js",
           "Developer",
           "Indonesia"
@@ -32,7 +34,6 @@ export default function App({ Component, pageProps }: AppProps) {
       ...additionalTag.meta
     ],
     themeColor: "#191F2E",
-    canonical: `${process.env.BASE_URl}`,
     defaultOpenGraphImageWidth: 1200,
     defaultOpenGraphImageHeight: 630,
     additionalLinkTags: [...additionalTag.link],
