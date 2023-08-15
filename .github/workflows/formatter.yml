@@ -1,0 +1,51 @@
+name: Prettier workflow
+
+on:
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["main"]
+  # schedule:
+  # - cron: "32 16 * * 4"
+
+jobs:
+  eslint:
+    name: Run eslint scanning
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+        continue-on-error: false
+
+      - name: Install ESLint
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: false
+
+  prettier:
+    name: Run prettier formatter
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+        continue-on-error: false
+
+      - name: Run prettier
+        run: npm run prettier
+        continue-on-error: false

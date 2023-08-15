@@ -1,0 +1,11 @@
+@tailwind base;
+
+@layer base {
+  * {
+    &,
+    &::before,
+    &::after {
+      @apply scroll-smooth;
+    }
+  }
+}
