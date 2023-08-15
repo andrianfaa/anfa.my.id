@@ -24,9 +24,6 @@ jobs:
         run: npm install
         continue-on-error: false
 
-      - name: Install ESLint
-        run: npm install
-
       - name: Run ESLint
         run: npm run lint
         continue-on-error: false
