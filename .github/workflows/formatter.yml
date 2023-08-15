@@ -2,9 +2,7 @@ name: Prettier workflow
 
 on:
   push:
-    branches: ["dev"]
-  pull_request:
-    branches: ["main"]
+    branches: ["main", "dev"]
   # schedule:
   # - cron: "32 16 * * 4"
 
