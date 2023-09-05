@@ -1,1 +1,44 @@
 @tailwind components;
+
+@layer components {
+  .container {
+    @apply sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl;
+  }
+
+  .button {
+    @apply transition-all duration-200 ease-in-out;
+    // @apply outline-1 outline-primary dark:outline-1 dark:outline-primary;
+    // @apply outline-none dark:outline-none;
+
+    &-primary {
+      @apply bg-primary bg-opacity-10 hover:bg-opacity-20 focus:bg-opacity-25;
+      @apply text-primary;
+    }
+  }
+
+  .navigation {
+    &-toggler {
+      @apply w-11 h-11;
+      @apply relative flex flex-col items-center justify-center;
+
+      > .icon {
+        @apply absolute;
+        @apply h-[1px] w-6;
+        @apply bg-black dark:bg-white;
+
+        &:nth-child(1) {
+          @apply translate-y-2;
+        }
+
+        &:nth-child(2) {
+          @apply w-5;
+          @apply translate-x-0.5;
+        }
+
+        &:nth-child(3) {
+          @apply -translate-y-2;
+        }
+      }
+    }
+  }
+}

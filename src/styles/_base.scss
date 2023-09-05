@@ -8,4 +8,9 @@
       @apply scroll-smooth;
     }
   }
+
+  body {
+    @apply bg-slate-50 dark:bg-slate-950;
+    @apply text-slate-600 dark:text-slate-400;
+  }
 }
