@@ -1,8 +1,8 @@
-import type { AppProps } from "next/app";
-import { NavigationBar } from "@/components/Navigation";
+import { NavigationBar } from "@/components";
 import { ThemeProvider } from "next-themes";
+import type { AppProps } from "next/app";
 
-import "../styles/root.scss";
+import "@/styles/root.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

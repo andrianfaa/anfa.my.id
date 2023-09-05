@@ -22,7 +22,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
     },
     transition: {
       duration: 0.1,
-      delay: 0.25
+      delay: 0.1
     }
   };
 
@@ -38,7 +38,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
     <div
       className={clsx(
         "fixed inset-0 z-40",
-        "bg-slate-300 dark:bg-slate-900 bg-opacity-30 dark:bg-opacity-30 backdrop-blur",
+        "bg-slate-300 dark:bg-neutral-900 bg-opacity-30 dark:bg-opacity-30 backdrop-blur",
         "transition-all duration-300 ease-in-out",
         isOpen ? "visible opacity-100" : "invisible opacity-0"
       )}
@@ -47,12 +47,15 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
         {isOpen && (
           // Panel left
           <div
-            className={clsx("lg:absolute lg:top-6 lg:right-6", "w-full lg:max-w-sm", "flex flex-col items-start gap-4")}
+            className={clsx("lg:absolute lg:top-6 lg:right-6", "w-full lg:max-w-xs", "flex flex-col items-start gap-4")}
           >
-            {/* Theme toggler */}
             <button
               type="button"
-              className={clsx("button rounded-md", "bg-white dark:bg-slate-800", "p-3 ml-auto")}
+              className={clsx(
+                "button rounded-md",
+                "bg-white text-gray-900 dark:bg-neutral-800 dark:text-gray-100",
+                "p-3 ml-auto"
+              )}
               onClick={onClickClose}
               title="close quick center"
             >
@@ -63,7 +66,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
               initial={{ ...animation.initial }}
               animate={{ ...animation.animate }}
               transition={{ ...animation.transition }}
-              className={clsx("font-bold text-slate-900 dark:text-white uppercase")}
+              className={clsx("font-bold text-gray-900 dark:text-gray-100 uppercase")}
             >
               Action center
             </motion.p>
@@ -71,14 +74,15 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
             <motion.div
               initial={{ ...animation.initial }}
               animate={{ ...animation.animate }}
-              transition={{ ...animation.transition, delay: 0.4 }}
-              className={clsx("w-full", "flex flex-row items-center justify-start gap-4")}
+              transition={{ ...animation.transition, delay: 0.2 }}
+              className={clsx("w-full", "flex flex-row items-center justify-start gap-4", "mb-6")}
             >
+              {/* Theme toggler */}
               <button
                 type="button"
                 id="theme-toggler"
                 onClick={changeTheme}
-                className={clsx("bg-white dark:bg-slate-800", "rounded-md", "p-4", "w-full", "text-left")}
+                className={clsx("bg-white dark:bg-neutral-800", "rounded-md", "p-4", "w-full", "text-left")}
                 title="change theme"
               >
                 <div
@@ -87,7 +91,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
                     "mb-4",
                     "relative overflow-hidden",
                     "flex items-center justify-center",
-                    "text-slate-900 dark:text-white"
+                    "text-gray-900 dark:text-gray-100"
                   )}
                 >
                   <BsFillMoonStarsFill
@@ -110,7 +114,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
 
                 <p className="text-sm">
                   Dark theme:{" "}
-                  <span className={clsx("font-bold", currentTheme === "dark" ? "text-white" : "text-slate-900")}>
+                  <span className={clsx("font-bold", currentTheme === "dark" ? "text-gray-100" : "text-gray-900")}>
                     {currentTheme === "dark" ? "On" : "Off"}
                   </span>
                 </p>
@@ -119,15 +123,45 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
               {/* Github */}
               <Link
                 href="https://github.com/andrianfaa"
-                className={clsx("bg-white dark:bg-slate-800", "rounded-md", "p-4", "w-full", "text-left")}
+                className={clsx("bg-white dark:bg-neutral-800", "rounded-md", "p-4", "w-full", "text-left")}
                 title="Anfa's github"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <BsGithub className={clsx("h-4 w-4", "mb-4", "text-slate-900 dark:text-white")} />
+                <BsGithub className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
 
                 <p className="text-sm">GitHub</p>
               </Link>
+            </motion.div>
+
+            <motion.p
+              initial={{ ...animation.initial }}
+              animate={{ ...animation.animate }}
+              transition={{ ...animation.transition, delay: 0.3 }}
+              className={clsx("font-bold text-gray-900 dark:text-gray-100 uppercase")}
+            >
+              Notifications
+            </motion.p>
+
+            <motion.div
+              initial={{ ...animation.initial }}
+              animate={{ ...animation.animate }}
+              transition={{ ...animation.transition, delay: 0.4 }}
+              className={clsx("w-full", "flex flex-row items-center justify-start gap-4", "mb-6", "text-sm")}
+            >
+              {/* <p className={clsx("w-full my-4 text-center")}>No Notifications</p> */}
+              <div
+                className={clsx(
+                  "w-full",
+                  "bg-white dark:bg-neutral-800",
+                  "rounded-md",
+                  "p-4",
+                  "text-gray-900 dark:text-gray-100"
+                )}
+              >
+                <p className={clsx("text-xs font-semibold", "mb-2")}>Info</p>
+                <p>This site is under development!</p>
+              </div>
             </motion.div>
           </div>
         )}
