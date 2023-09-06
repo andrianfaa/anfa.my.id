@@ -55,5 +55,17 @@
         }
       }
     }
+
+    &-menu {
+      ul {
+        > li > a {
+          @apply transition-all duration-200 ease-in-out;
+        }
+
+        &.open > li > a {
+          @apply translate-x-0 opacity-100;
+        }
+      }
+    }
   }
 }
