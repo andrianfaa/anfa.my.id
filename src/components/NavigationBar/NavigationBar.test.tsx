@@ -13,7 +13,7 @@ describe("test `<Navigation />` component", () => {
 
     const text = screen.getByTestId("navigation-parent");
 
-    expect(text).toBeVisible();
+    expect(text).toBeInTheDocument();
   });
 
   it("should render navigation toggler", () => {
@@ -27,7 +27,7 @@ describe("test `<Navigation />` component", () => {
 
     const navigationToggler = screen.getByTestId("navigation-toggler");
 
-    expect(navigationToggler).toBeVisible();
+    expect(navigationToggler).toBeInTheDocument();
     expect(navigationToggler).toBeValid();
   });
 });

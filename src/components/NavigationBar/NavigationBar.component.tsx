@@ -1,11 +1,13 @@
 import { Portal } from "@/components/Portal";
 import clsx from "clsx";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FiChevronRight, FiGrid } from "react-icons/fi";
 import type { NavigationBarParams } from "./NavigationBar";
 import { QuickCenter } from "./QuickCenter";
 import { useWindow } from "@/hooks";
+import { NavigationMenu } from "./NavigationMenu";
+import Link from "next/link";
 
 const NavigationBar = ({ testId }: NavigationBarParams) => {
   const { systemTheme, theme } = useTheme();
@@ -15,6 +17,18 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
   const [openQuickCenter, setOpenQuickCenter] = useState<boolean>(false);
   const [currentTheme, setCurrentTheme] = useState<string>("light");
 
+  const handleOpenNavigationMenu = useCallback(() => {
+    if (openQuickCenter) setOpenQuickCenter(false);
+
+    setIsOpen(true);
+  }, [openQuickCenter]);
+
+  const handleOpenQuickCenter = useCallback(() => {
+    if (isOpen) setIsOpen(false);
+
+    setOpenQuickCenter(true);
+  }, [isOpen]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -22,14 +36,14 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
       const { key, code } = event;
 
       if (!openQuickCenter && (key === "q" || code === "q")) {
-        setOpenQuickCenter(true);
+        handleOpenQuickCenter();
       }
 
       if (openQuickCenter && (key === "Escape" || code === "Escape")) {
         setOpenQuickCenter(false);
       }
     });
-  }, [openQuickCenter]);
+  }, [handleOpenQuickCenter, openQuickCenter]);
 
   useEffect(() => {
     if (typeof window === "undefined" || typeof theme === "undefined") return;
@@ -55,9 +69,9 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
         )}
         data-testid={testId?.parent}
       >
-        <div className={clsx("container", "p-4 mx-auto lg:p-6", "flex flex-row items-center justify-between")}>
-          <div className={clsx("flex flex-row items-center gap-x-6")}>
-            <a href="" className={clsx("flex flex-row items-center justify-start")} title="Anfa logo">
+        <div className={clsx("container", "p-4 mx-auto md:p-6", "flex flex-row items-center justify-between")}>
+          <div className={clsx("flex flex-row items-center gap-x-4")}>
+            <Link href={"/"} className={clsx("flex flex-row items-center justify-start")} title="Anfa logo">
               {/* Logo */}
               <svg
                 width="53"
@@ -119,7 +133,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                   </linearGradient>
                 </defs>
               </svg>
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -132,9 +146,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                 "rounded-md"
               )}
               title="Open quick center"
-              onClick={() => {
-                setOpenQuickCenter((state) => !state);
-              }}
+              onClick={handleOpenQuickCenter}
             >
               <FiGrid className={clsx("h-4 w-4")} />
               <span>Quick center</span>
@@ -148,20 +160,14 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
             type="button"
             className={clsx("navigation-toggler", "lg:hidden", isOpen ? "" : "")}
             data-testid={testId?.toggler}
-            onClick={() => setIsOpen((state) => !state)}
+            onClick={handleOpenNavigationMenu}
           >
             <span className="icon"></span>
             <span className="icon"></span>
             <span className="icon"></span>
           </button>
 
-          {/* <nav data-testid={testId?.navigation}>
-            <ul>
-              <li>
-                <a href="">About</a>
-              </li>
-            </ul>
-          </nav> */}
+          <NavigationMenu isOpen={isOpen} onClickClose={() => setIsOpen(false)} />
         </div>
       </div>
     </>
