@@ -86,21 +86,17 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
                 <li
                   key={loopKey}
                   // className={clsx("border-b border-b-gray-200 dark:border-b-zinc-700 last:border-b-0 lg:border-b-0")}
+                  className={clsx("opacity-0 -translate-x-3 lg:translate-x-0 lg:opacity-100")}
+                  style={{
+                    transitionDelay: transitionDelay
+                  }}
                 >
                   <a
                     href={url}
                     title={title}
                     target={isOpenInNewTab ? "_blank" : undefined}
                     rel={isOpenInNewTab ? "noreferrer noopener" : undefined}
-                    className={clsx(
-                      "py-2.5",
-                      "w-full block",
-                      "hover:text-gray-900 dark:hover:text-gray-100",
-                      "opacity-0 -translate-x-3 lg:translate-x-0 lg:opacity-100"
-                    )}
-                    style={{
-                      transitionDelay: transitionDelay
-                    }}
+                    className={clsx("py-2.5", "w-full block", "hover:text-gray-900 dark:hover:text-gray-100")}
                     onClick={(event) => {
                       event.isDefaultPrevented();
 

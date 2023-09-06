@@ -58,11 +58,11 @@
 
     &-menu {
       ul {
-        > li > a {
+        > li {
           @apply transition-all duration-200 ease-in-out;
         }
 
-        &.open > li > a {
+        &.open > li {
           @apply translate-x-0 opacity-100;
         }
       }
