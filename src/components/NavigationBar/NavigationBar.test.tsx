@@ -1,21 +1,33 @@
 import { render, screen } from "@testing-library/react";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "./NavigationBar.component";
 
 describe("test `<Navigation />` component", () => {
   it("should be rendered", () => {
-    render(<NavigationBar />);
+    render(
+      <NavigationBar
+        testId={{
+          parent: "navigation-parent"
+        }}
+      />
+    );
 
-    const text = screen.getByText(/Navigation/);
+    const text = screen.getByTestId("navigation-parent");
 
     expect(text).toBeVisible();
   });
 
-  it("should render `nav` tag", () => {
-    render(<NavigationBar />);
+  it("should render navigation toggler", () => {
+    render(
+      <NavigationBar
+        testId={{
+          toggler: "navigation-toggler"
+        }}
+      />
+    );
 
-    const navTag = screen.getByTestId("navigation-container");
+    const navigationToggler = screen.getByTestId("navigation-toggler");
 
-    expect(navTag).toBeVisible();
-    expect(navTag).toBeValid();
+    expect(navigationToggler).toBeVisible();
+    expect(navigationToggler).toBeValid();
   });
 });

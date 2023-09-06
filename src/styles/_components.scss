@@ -1,1 +1,59 @@
 @tailwind components;
+
+@layer components {
+  .container {
+    @apply sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl;
+  }
+
+  .content {
+    @apply px-4 pb-4 pt-[92px] md:px-6 md:pb-6 lg:pt-[108px];
+  }
+
+  .button {
+    @apply transition-all duration-200 ease-in-out;
+
+    // &-primary {
+    //   @apply bg-primary bg-opacity-10 hover:bg-opacity-20 focus:bg-opacity-25;
+    //   @apply text-primary;
+    // }
+
+    &-default {
+      &-inverted {
+        @apply bg-slate-50 hover:bg-slate-100 focus:bg-slate-100 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:focus:bg-zinc-700;
+      }
+    }
+  }
+
+  .keyboard {
+    @apply font-mono;
+    @apply text-xs leading-none text-gray-100 dark:text-slate-900 font-semibold;
+    @apply bg-gray-900 dark:bg-zinc-100 rounded-md;
+    @apply px-1.5 py-1;
+  }
+
+  .navigation {
+    &-toggler {
+      @apply w-11 h-11;
+      @apply relative flex flex-col items-center justify-center;
+
+      > .icon {
+        @apply absolute;
+        @apply h-[1px] w-6;
+        @apply bg-black dark:bg-white;
+
+        &:nth-child(1) {
+          @apply translate-y-2;
+        }
+
+        &:nth-child(2) {
+          @apply w-5;
+          @apply translate-x-0.5;
+        }
+
+        &:nth-child(3) {
+          @apply -translate-y-2;
+        }
+      }
+    }
+  }
+}
