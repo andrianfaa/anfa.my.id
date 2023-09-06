@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { FiChevronRight, FiGrid } from "react-icons/fi";
 import type { NavigationBarParams } from "./NavigationBar";
 import { QuickCenter } from "./QuickCenter";
+import { useWindow } from "@/hooks";
 
 const NavigationBar = ({ testId }: NavigationBarParams) => {
   const { systemTheme, theme } = useTheme();
+  const { scrollPosition } = useWindow();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openQuickCenter, setOpenQuickCenter] = useState<boolean>(false);
@@ -18,6 +20,10 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
 
     window.addEventListener("keydown", (event) => {
       const { key, code } = event;
+
+      if (!openQuickCenter && (key === "q" || code === "q")) {
+        setOpenQuickCenter(true);
+      }
 
       if (openQuickCenter && (key === "Escape" || code === "Escape")) {
         setOpenQuickCenter(false);
@@ -40,7 +46,13 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
       </Portal>
 
       <div
-        className={clsx("border-b border-b-gray-200 dark:border-neutral-800", "fixed top-0 left-0 z-30", "w-full")}
+        className={clsx(
+          scrollPosition.y >= 80 &&
+            "border-b border-b-gray-200 dark:border-zinc-800 bg-gray-50 bg-opacity-50 dark:bg-zinc-950 dark:bg-opacity-50 backdrop-blur",
+          "fixed top-0 left-0 z-30",
+          "transition-[background] duration-200 ease-in-out",
+          "w-full"
+        )}
         data-testid={testId?.parent}
       >
         <div className={clsx("container", "p-4 mx-auto lg:p-6", "flex flex-row items-center justify-between")}>
@@ -80,7 +92,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                     y2="5.5"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
+                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                     <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                   </linearGradient>
                   <linearGradient
@@ -91,7 +103,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                     y2="5.5"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
+                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                     <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                   </linearGradient>
                   <linearGradient
@@ -102,7 +114,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                     y2="3.47095"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
+                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                     <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
                   </linearGradient>
                 </defs>
@@ -111,10 +123,10 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
 
             <button
               type="button"
-              accessKey="q"
               className={clsx(
-                "text-sm font-semibold",
-                "button button-default",
+                "bg-zinc-900 bg-opacity-10 hover:bg-opacity-20 focus:bg-opacity-25 dark:bg-zinc-50 dark:bg-opacity-10 dark:hover:bg-opacity-25 dark:focus:bg-opacity-25",
+                "text-gray-900 dark:text-gray-50 text-sm font-semibold",
+                "button",
                 "px-4 py-2.5",
                 "flex flex-row items-center gap-x-2",
                 "rounded-md"
@@ -128,16 +140,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
               <span>Quick center</span>
 
               <FiChevronRight className={clsx("h-4 w-4", "lg:hidden")} />
-              <span
-                className={clsx(
-                  "text-xs leading-none text-gray-100 dark:text-neutral-900 font-normal",
-                  "bg-gray-900 dark:bg-neutral-100 rounded-md",
-                  "px-1.5 py-1",
-                  "hidden lg:flex"
-                )}
-              >
-                alt+Q
-              </span>
+              <span className={clsx("keyboard", "hidden lg:flex")}>Q</span>
             </button>
           </div>
 

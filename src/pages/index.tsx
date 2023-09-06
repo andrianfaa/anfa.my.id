@@ -1,11 +1,22 @@
 import clsx from "clsx";
 import type { NextPage } from "next";
+import { VscRocket } from "react-icons/vsc";
 
 const Home: NextPage = () => {
   return (
-    <div className={clsx("container h-screen", "p-4 mx-auto md:p-6", "flex flex-col items-center justify-center")}>
-      <h1>This site under development</h1>
-    </div>
+    <>
+      <div
+        className={clsx(
+          "container min-h-screen content",
+          "mx-auto",
+          "flex flex-col justify-center items-center",
+          "text-gray-900 dark:text-white"
+        )}
+      >
+        <VscRocket className={clsx("h-20 w-20", "mb-8", "animate-pulse")} />
+        <h1 className={clsx("max-w-[250px] sm:max-w-xs", "text-xl text-center")}>Coming soon...</h1>
+      </div>
+    </>
   );
 };
 

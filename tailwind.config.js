@@ -14,6 +14,10 @@ module.exports = {
       colors: {
         ...defaultTheme.colors,
         primary: "#7D71EA"
+      },
+      fontFamily: {
+        sans: ["'Inter'", ...defaultTheme.fontFamily.sans],
+        mono: ["'JetBrains Mono'", ...defaultTheme.fontFamily.mono]
       }
     }
   },
