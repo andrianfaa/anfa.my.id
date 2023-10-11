@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Link from "next/link";
 import { FiX } from "react-icons/fi";
 import type { NavigationMenuParams } from "./NavigationMenu";
 
@@ -22,7 +23,7 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
     },
     {
       title: "Guestbook",
-      url: "/guesbook",
+      url: "/guestbook",
       transitionDelay: "400ms"
     }
   ];
@@ -91,7 +92,7 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
                     transitionDelay: transitionDelay
                   }}
                 >
-                  <a
+                  <Link
                     href={url}
                     title={title}
                     target={isOpenInNewTab ? "_blank" : undefined}
@@ -104,7 +105,7 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
                     }}
                   >
                     {title}
-                  </a>
+                  </Link>
                 </li>
               );
             })}

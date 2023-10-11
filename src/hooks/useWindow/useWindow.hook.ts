@@ -11,6 +11,10 @@ const useWindow = (): UseWindowReturnTypes => {
     height: 0
   });
 
+  /**
+   * Update scroll position when user scrolls down/up
+   * @returns {void} void;
+   */
   const updateScrollPosition = useCallback(() => {
     if (typeof window === "undefined") return;
 
@@ -21,13 +25,17 @@ const useWindow = (): UseWindowReturnTypes => {
     }));
   }, []);
 
+  /**
+   * Update the pane size when user resizes the window
+   * @returns {void} void
+   */
   const updatePaneSize = useCallback(() => {
     if (typeof window === "undefined") return;
 
     setWindowPaneSize((prevState) => ({
       ...prevState,
-      height: window.innerHeight,
-      width: window.innerWidth
+      height: window.screen?.height || window.innerHeight,
+      width: window.screen?.width || window.innerWidth
     }));
   }, []);
 
