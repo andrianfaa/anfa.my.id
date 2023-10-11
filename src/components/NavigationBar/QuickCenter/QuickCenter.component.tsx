@@ -8,10 +8,11 @@ import { FiSun, FiX } from "react-icons/fi";
 import { MdKeyboard } from "react-icons/md";
 import { QuickCenterParams } from "./QuickCenter";
 
-const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
+const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
   const { systemTheme, theme, setTheme } = useTheme();
 
   const currentTheme = theme === "system" ? systemTheme : theme;
+
   const animation = {
     initial: {
       opacity: 0,
@@ -26,6 +27,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
       delay: 0.1
     }
   };
+
   const keyboardShortcuts = [
     {
       title: "Open Quick center",
@@ -52,13 +54,16 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
     }
   }, [currentTheme, setTheme]);
 
-  const handleKeydownEventListener = (event: KeyboardEvent) => {
-    const { key, code, altKey } = event;
+  const handleKeydownEventListener = useCallback(
+    (event: KeyboardEvent) => {
+      const { key, code, altKey } = event;
 
-    if (altKey && (key === "t" || code === "t")) {
-      changeTheme();
-    }
-  };
+      if (altKey && (key === "t" || code === "t")) {
+        changeTheme();
+      }
+    },
+    [changeTheme]
+  );
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -68,7 +73,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
     return () => {
       window.removeEventListener("keydown", handleKeydownEventListener);
     };
-  }, [currentTheme]);
+  }, [currentTheme, handleKeydownEventListener]);
 
   return (
     <div
@@ -78,6 +83,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
         "transition-all duration-300 ease-in-out",
         isOpen ? "visible opacity-100" : "invisible opacity-0"
       )}
+      data-testid={testId?.parent}
     >
       <div className={clsx("container relative h-screen", "p-4 md:p-6 mx-auto")}>
         {isOpen && (
@@ -126,6 +132,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
                   onClick={changeTheme}
                   className={clsx("button button-default-inverted", "rounded-md", "p-4", "w-full", "text-left")}
                   title="change theme"
+                  data-testid={testId?.themeToggler}
                 >
                   <div
                     className={clsx(
@@ -169,6 +176,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
                   title="Anfa's github"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-testid={testId?.githubButton}
                 >
                   <BsGithub className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
 
@@ -190,6 +198,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
                 animate={{ ...animation.animate }}
                 transition={{ ...animation.transition, delay: 0.4 }}
                 className={clsx("w-full", "flex flex-row items-center justify-start gap-4", "mb-6", "text-sm")}
+                data-testid={testId?.notificationContainer}
               >
                 {/* <p className={clsx("w-full my-4 text-center")}>No Notifications</p> */}
                 <div
@@ -214,6 +223,7 @@ const QuickCenter = ({ isOpen, onClickClose }: QuickCenterParams) => {
                 "w-full md:max-w-xs",
                 "md:flex-col md:items-start md:gap-4"
               )}
+              data-testid={testId?.shortcutContainer}
             >
               <div
                 className={clsx(

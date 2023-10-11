@@ -7,5 +7,9 @@ export interface QuickCenterParams {
    */
   testId?: {
     themeToggler?: string;
+    githubButton?: string;
+    notificationContainer?: string;
+    shortcutContainer?: string;
+    parent?: string;
   };
 }

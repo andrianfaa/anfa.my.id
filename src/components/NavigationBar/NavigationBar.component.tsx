@@ -1,13 +1,13 @@
 import { Portal } from "@/components/Portal";
+import { useWindow } from "@/hooks";
 import clsx from "clsx";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { FiChevronRight, FiGrid } from "react-icons/fi";
 import type { NavigationBarParams } from "./NavigationBar";
-import { QuickCenter } from "./QuickCenter";
-import { useWindow } from "@/hooks";
 import { NavigationMenu } from "./NavigationMenu";
-import Link from "next/link";
+import { QuickCenter } from "./QuickCenter";
 
 const NavigationBar = ({ testId }: NavigationBarParams) => {
   const { systemTheme, theme } = useTheme();
@@ -62,7 +62,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
       <div
         className={clsx(
           scrollPosition.y >= 80 &&
-            "border-b border-b-gray-200 dark:border-zinc-800 bg-gray-50 bg-opacity-50 dark:bg-zinc-950 dark:bg-opacity-50 backdrop-blur",
+            "border-b border-b-gray-200 dark:border-zinc-800 bg-gray-50 bg-opacity-50 dark:bg-zinc-950 dark:bg-opacity-75 backdrop-blur",
           "fixed top-0 left-0 z-30",
           "transition-[background] duration-200 ease-in-out",
           "w-full"
