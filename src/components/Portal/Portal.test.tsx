@@ -13,7 +13,7 @@ describe("test <Portal /> component", () => {
       </>
     );
 
-    const elementByTestId = screen.getByTestId("portal content");
+    const elementByTestId = screen.getByTestId("portal-content");
     const elementByTest = screen.getByText("Portal");
 
     expect(elementByTestId).toBeInTheDocument();
