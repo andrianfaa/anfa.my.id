@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { PortalParams } from "./Portal";
+import type { PortalParams } from "./types";
 
 const Portal = ({ children }: PortalParams) => {
   const ref = useRef<null | HTMLElement>(null);

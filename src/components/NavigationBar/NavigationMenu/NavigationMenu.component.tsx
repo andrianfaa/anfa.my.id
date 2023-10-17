@@ -1,28 +1,30 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { FiX } from "react-icons/fi";
-import type { NavigationMenuParams } from "./NavigationMenu";
+import { useTranslations } from "next-intl";
+import type { NavigationMenuParams } from "./types";
 
-const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
+const NavigationMenu = ({ isOpen, locale, onClickClose }: NavigationMenuParams) => {
+  const translate = useTranslations("NavigationBar");
   const menu = [
     {
-      title: "About",
+      title: translate("NavigationLink.about"),
       url: "/about",
       transitionDelay: "100ms"
     },
     {
-      title: "Portfolio",
+      title: translate("NavigationLink.portfolio"),
       url: "/portfolio",
       transitionDelay: "200ms"
     },
     {
-      title: "Medium",
+      title: translate("NavigationLink.medium"),
       url: "https://medium.com/@andrianfaa",
       isOpenInNewTab: true,
       transitionDelay: "300ms"
     },
     {
-      title: "Guestbook",
+      title: translate("NavigationLink.guestbook"),
       url: "/guestbook",
       transitionDelay: "400ms"
     }
@@ -54,7 +56,7 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
             "lg:hidden"
           )}
           onClick={onClickClose}
-          title="close quick center"
+          title={locale === "en" ? "Close navigation menu" : "Tutup menu navigasi"}
         >
           <FiX className={clsx("w-6 h-6")} />
         </button>
@@ -76,7 +78,7 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
               "w-full md:max-w-xs"
             )}
           >
-            Navigation
+            {locale === "en" ? "Navigation" : "Navigasi"}
           </p>
 
           <ul className={clsx("w-full", "flex flex-col lg:flex-row lg:gap-6", isOpen && "open")}>
@@ -97,7 +99,11 @@ const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
                     title={title}
                     target={isOpenInNewTab ? "_blank" : undefined}
                     rel={isOpenInNewTab ? "noreferrer noopener" : undefined}
-                    className={clsx("py-2.5", "w-full block", "hover:text-gray-900 dark:hover:text-gray-100")}
+                    className={clsx(
+                      "py-2.5",
+                      "w-full block",
+                      "hover:text-gray-900 dark:hover:text-gray-100 whitespace-nowrap"
+                    )}
                     onClick={(event) => {
                       event.isDefaultPrevented();
 
