@@ -2,15 +2,15 @@ import { render, screen } from "@testing-library/react";
 import Portal from "./Portal.component";
 
 describe("test <Portal /> component", () => {
+  beforeAll(() => {
+    render(<div id="portal"></div>);
+  });
+
   it("should be render portal and it's content", () => {
     render(
-      <>
-        <div id="portal"></div>
-
-        <Portal>
-          <p data-testid="portal-content">Portal</p>
-        </Portal>
-      </>
+      <Portal>
+        <p data-testid="portal-content">Portal</p>
+      </Portal>
     );
 
     const elementByTestId = screen.getByTestId("portal-content");

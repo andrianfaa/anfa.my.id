@@ -1,8 +1,12 @@
 import clsx from "clsx";
 import { AnimationProps, motion } from "framer-motion";
 import type { NextPage } from "next";
+import { Router } from "next/router";
+import { useTranslations } from "next-intl";
 
 const Home: NextPage = () => {
+  const translate = useTranslations("Pages.home");
+
   const animation = {
     initial: {
       opacity: 0,
@@ -22,8 +26,8 @@ const Home: NextPage = () => {
       <div className="relative">
         <header
           className={clsx(
-            "container min-h-screen z-[1]",
-            "p-4 md:p-6",
+            "container min-h-screen lg:min-h-[unset] lg:h-screen z-[1] !max-h-[720px]",
+            "px-4 py-20 md:p-6",
             "mx-auto",
             "flex flex-col items-start justify-center"
           )}
@@ -40,7 +44,10 @@ const Home: NextPage = () => {
               "mb-4"
             )}
           >
-            Hi!&#128075; <span className="block">I&rsquo;m Andrian Fadhilla.</span>
+            {translate.rich("title", {
+              wavehand: () => <>&#128075;</>,
+              block: (content) => <span className="block">{content}</span>
+            })}
           </motion.h1>
 
           <motion.p
@@ -52,7 +59,7 @@ const Home: NextPage = () => {
             }}
             className={clsx("mb-4", "max-w-xl lg:max-w-2xl", "text-base md:text-lg lg:text-xl")}
           >
-            a Computer Science Student and also Freelance React Developer based in Bekasi, Indonesia.
+            {translate("subtitle")}
           </motion.p>
 
           <motion.button
@@ -65,7 +72,7 @@ const Home: NextPage = () => {
             type="button"
             className={clsx("button button-default", "py-4 px-6", "rounded-lg", "font-semibold")}
           >
-            Learn more about me
+            {translate("ctaButtonText")}
           </motion.button>
         </header>
       </div>
@@ -74,5 +81,14 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps(router: Router) {
+  return {
+    props: {
+      locale: router.locale || "en",
+      messages: (await import(`../messages/${router.locale}.json`)).default
+    }
+  };
+}
 
 export default Home;

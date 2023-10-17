@@ -1,17 +1,19 @@
 import { Portal } from "@/components/Portal";
 import { useWindow } from "@/hooks";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { FiChevronRight, FiGrid } from "react-icons/fi";
-import type { NavigationBarParams } from "./NavigationBar";
 import { NavigationMenu } from "./NavigationMenu";
 import { QuickCenter } from "./QuickCenter";
+import type { NavigationBarParams } from "./types";
 
-const NavigationBar = ({ testId }: NavigationBarParams) => {
+const NavigationBar = ({ testId, locale }: NavigationBarParams) => {
   const { systemTheme, theme } = useTheme();
   const { scrollPosition } = useWindow();
+  const translate = useTranslations("NavigationBar");
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openQuickCenter, setOpenQuickCenter] = useState<boolean>(false);
@@ -56,7 +58,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
   return (
     <>
       <Portal>
-        <QuickCenter isOpen={openQuickCenter} onClickClose={() => setOpenQuickCenter(false)} />
+        <QuickCenter locale={locale} isOpen={openQuickCenter} onClickClose={() => setOpenQuickCenter(false)} />
       </Portal>
 
       <div
@@ -135,6 +137,7 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
               </svg>
             </Link>
 
+            {/* Quick Center Toggler */}
             <button
               type="button"
               className={clsx(
@@ -145,29 +148,43 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
                 "flex flex-row items-center gap-x-2",
                 "rounded-md"
               )}
-              title="Open quick center"
+              title={locale === "en" ? "Open quick center" : "Buka pusat cepat"}
               onClick={handleOpenQuickCenter}
             >
               <FiGrid className={clsx("h-4 w-4")} />
-              <span>Quick center</span>
+              <span>{translate("QuickCenter.button")}</span>
 
               <FiChevronRight className={clsx("h-4 w-4", "lg:hidden")} />
               <span className={clsx("keyboard", "hidden lg:flex")}>Q</span>
             </button>
           </div>
 
+          {/* Navigation Toggler */}
           <button
             type="button"
-            className={clsx("navigation-toggler", "lg:hidden", isOpen ? "" : "")}
+            className={clsx(
+              "navigation-toggler",
+              "lg:hidden",
+              process.env.NODE_ENV === "test" && (isOpen ? "menu-opened" : "menu-closed")
+            )}
             data-testid={testId?.toggler}
             onClick={handleOpenNavigationMenu}
+            title={
+              locale === "en"
+                ? isOpen
+                  ? "Open navigation menu"
+                  : "Close navigation menu"
+                : isOpen
+                ? "Buka menu navigasi"
+                : "tutup menu navigasi"
+            }
           >
             <span className="icon"></span>
             <span className="icon"></span>
             <span className="icon"></span>
           </button>
 
-          <NavigationMenu isOpen={isOpen} onClickClose={() => setIsOpen(false)} />
+          <NavigationMenu locale={locale} isOpen={isOpen} onClickClose={() => setIsOpen(false)} />
         </div>
       </div>
     </>

@@ -1,15 +1,19 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Fragment, memo, useCallback, useEffect } from "react";
-import { BsFillMoonStarsFill, BsGithub } from "react-icons/bs";
+import { BsFillMoonStarsFill, BsGithub, BsTranslate } from "react-icons/bs";
 import { FiSun, FiX } from "react-icons/fi";
 import { MdKeyboard } from "react-icons/md";
-import { QuickCenterParams } from "./QuickCenter";
+import type { QuickCenterParams } from "./types";
 
-const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
+const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams) => {
   const { systemTheme, theme, setTheme } = useTheme();
+  const { route } = useRouter();
+  const translate = useTranslations("NavigationBar.QuickCenter");
 
   const currentTheme = theme === "system" ? systemTheme : theme;
 
@@ -28,19 +32,19 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
     }
   };
 
-  const keyboardShortcuts = [
+  const KEYBOARD_SHORTCUT = [
     {
-      title: "Open Quick center",
+      title: translate("shortcut.list.openQuickCenter"),
       shortcut: ["Q"],
       animationDelay: 0.1
     },
     {
-      title: "Close Quick center",
+      title: translate("shortcut.list.closeQuickCenter"),
       shortcut: ["Esc"],
       animationDelay: 0.2
     },
     {
-      title: "Toggle dark theme",
+      title: translate("shortcut.list.toggleDarkTheme"),
       shortcut: ["Alt", "T"],
       animationDelay: 0.3
     }
@@ -84,6 +88,9 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
         isOpen ? "visible opacity-100" : "invisible opacity-0"
       )}
       data-testid={testId?.parent}
+      id="quick-center-container"
+      aria-hidden={!isOpen}
+      role="dialog"
     >
       <div className={clsx("container relative h-screen", "p-4 md:p-6 mx-auto")}>
         {isOpen && (
@@ -105,7 +112,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                   "p-3 ml-auto"
                 )}
                 onClick={onClickClose}
-                title="close quick center"
+                title={locale === "en" ? "Close quick center" : "Tutup pusat cepat"}
               >
                 <FiX className={clsx("w-6 h-6")} />
               </button>
@@ -116,14 +123,14 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                 transition={{ ...animation.transition }}
                 className={clsx("font-bold text-gray-900 dark:text-gray-100 uppercase")}
               >
-                Action center
+                {translate("ActionCenter.title")}
               </motion.p>
 
               <motion.div
                 initial={{ ...animation.initial }}
                 animate={{ ...animation.animate }}
                 transition={{ ...animation.transition, delay: 0.2 }}
-                className={clsx("w-full", "flex flex-row items-center justify-start gap-4", "mb-6")}
+                className={clsx("w-full", "grid grid-cols-2 gap-4", "mb-6")}
               >
                 {/* Theme toggler */}
                 <button
@@ -131,7 +138,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                   id="theme-toggler"
                   onClick={changeTheme}
                   className={clsx("button button-default-inverted", "rounded-md", "p-4", "w-full", "text-left")}
-                  title="change theme"
+                  title={locale === "en" ? "Change theme" : "Ubah tema"}
                   data-testid={testId?.themeToggler}
                 >
                   <div
@@ -162,7 +169,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                   </div>
 
                   <p className="text-sm">
-                    Dark theme:{" "}
+                    {translate("ActionCenter.list.darkTheme")}:{" "}
                     <span className={clsx("font-bold", currentTheme === "dark" ? "text-gray-100" : "text-gray-900")}>
                       {currentTheme === "dark" ? "On" : "Off"}
                     </span>
@@ -180,7 +187,25 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                 >
                   <BsGithub className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
 
-                  <p className="text-sm">GitHub</p>
+                  <p className="text-sm">{translate("ActionCenter.list.github")}</p>
+                </Link>
+
+                {/* Language */}
+                <Link
+                  href={route}
+                  locale={locale === "en" ? "id" : "en"}
+                  type="button"
+                  className={clsx("button button-default-inverted", "rounded-md", "p-4", "w-full", "text-left")}
+                  title={`${locale === "id" ? "Ganti bahasa ke Inggris (EN)" : "Change language to Bahasa (ID)"}`}
+                >
+                  <BsTranslate className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
+
+                  <p className="text-sm">
+                    {translate("ActionCenter.list.language")}:{" "}
+                    <span className={clsx("font-bold", currentTheme === "dark" ? "text-gray-100" : "text-gray-900")}>
+                      {locale === "en" ? "EN" : "ID"}
+                    </span>
+                  </p>
                 </Link>
               </motion.div>
 
@@ -190,7 +215,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                 transition={{ ...animation.transition, delay: 0.3 }}
                 className={clsx("font-bold text-gray-900 dark:text-gray-100 uppercase")}
               >
-                Notifications
+                {translate("notification.title")}
               </motion.p>
 
               <motion.div
@@ -200,12 +225,11 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                 className={clsx("w-full", "flex flex-row items-center justify-start gap-4", "mb-6", "text-sm")}
                 data-testid={testId?.notificationContainer}
               >
-                {/* <p className={clsx("w-full my-4 text-center")}>No Notifications</p> */}
                 <div
                   className={clsx(
                     "w-full",
-                    "bg-slate-50 dark:bg-zinc-950",
-                    "dark:border dark:border-zinc-800 rounded-md",
+                    "bg-slate-50 dark:bg-zinc-800",
+                    "rounded-md",
                     "p-4",
                     "text-gray-900 dark:text-gray-100"
                   )}
@@ -225,15 +249,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
               )}
               data-testid={testId?.shortcutContainer}
             >
-              <div
-                className={clsx(
-                  "w-full",
-                  "bg-slate-50 dark:bg-zinc-950",
-                  "dark:border dark:border-zinc-800 rounded-md",
-                  "p-6",
-                  "text-sm"
-                )}
-              >
+              <div className={clsx("w-full", "bg-slate-50 dark:bg-zinc-800", "rounded-md", "p-6", "text-sm")}>
                 <p
                   className={clsx(
                     "text-2xl font-semibold text-gray-900 dark:text-gray-100",
@@ -242,12 +258,12 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                   )}
                 >
                   <MdKeyboard className={clsx("h-8 w-8", "mr-3")} />
-                  TIP: Shortcuts
+                  {translate("shortcut.title")}
                 </p>
-                <p className="mb-4">Navigate the site with ease using keyboard shortcuts.</p>
+                <p className="mb-4">{translate("shortcut.subtitle")}</p>
 
                 <ul className={clsx("list-none")}>
-                  {keyboardShortcuts.map(({ title, shortcut, animationDelay }, index) => {
+                  {KEYBOARD_SHORTCUT.map(({ title, shortcut, animationDelay }, index) => {
                     const loopKey = index.toString();
 
                     return (
@@ -266,7 +282,7 @@ const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
                         }}
                         className={clsx(
                           "flex flex-row items-center justify-between gap-4",
-                          "border-b border-b-gray-200  dark:border-b-zinc-800 last:border-b-0",
+                          "border-b border-b-gray-200  dark:border-b-zinc-700 last:border-b-0",
                           "py-2.5"
                         )}
                         key={loopKey}

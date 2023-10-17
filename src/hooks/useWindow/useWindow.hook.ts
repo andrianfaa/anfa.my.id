@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import type { UseWindowReturnTypes, WindowPaneSize, WindowScrollPosition } from "./useWindow";
+import type { UseWindowReturnTypes, WindowPaneSize, WindowScrollPosition } from "./types";
 
 const useWindow = (): UseWindowReturnTypes => {
   const [scrollPosition, setScrollPosition] = useState<WindowScrollPosition>({
