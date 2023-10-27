@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [events]);
 
   return (
-    <NextIntlClientProvider messages={pageProps.messages}>
+    <NextIntlClientProvider messages={pageProps.localize}>
       <ThemeProvider attribute="class">
         <NavigationBar locale={pageProps.locale || "en"} />
 

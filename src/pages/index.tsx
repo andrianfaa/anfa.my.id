@@ -1,8 +1,9 @@
+import { getLocalization } from "@/utils";
 import clsx from "clsx";
 import { AnimationProps, motion } from "framer-motion";
 import type { NextPage } from "next";
-import { Router } from "next/router";
 import { useTranslations } from "next-intl";
+import { Router } from "next/router";
 
 const Home: NextPage = () => {
   const translate = useTranslations("Pages.home");
@@ -86,7 +87,7 @@ export async function getStaticProps(router: Router) {
   return {
     props: {
       locale: router.locale || "en",
-      messages: (await import(`../messages/${router.locale}.json`)).default
+      localize: await getLocalization(router.locale)
     }
   };
 }
