@@ -8,9 +8,9 @@ import "@/styles/root.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const defaultSeo: DefaultSeoProps = {
-    title: pageProps.localize.seo.title || "Andrian Fadhilla - Computer Science Student and React Developer",
+    title: pageProps.localize?.seo?.title || "Andrian Fadhilla - Computer Science Student and React Developer",
     description:
-      pageProps.localize.seo.description ||
+      pageProps.localize?.seo?.description ||
       "a Computer Science Student and also Freelance React Developer based in Bekasi, Indonesia"
   };
 
