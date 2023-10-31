@@ -1,5 +1,4 @@
 export interface NavigationBarParams {
-  locale?: string;
   /**
    * Jest Testing ID
    */

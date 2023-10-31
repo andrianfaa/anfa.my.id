@@ -1,13 +1,17 @@
-import { getLocalization } from "@/utils";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import NavigationBar from "./NavigationBar.component";
+
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 describe("test `<Navigation />` component", () => {
   let localize: AbstractIntlMessages | undefined = undefined;
 
   beforeAll(async () => {
-    localize = await getLocalization("en");
+    localize = {
+      ...require(`../../localization/pages/index/en.json`),
+      ...require(`../../localization/shared/en.json`)
+    };
   });
 
   it("should be rendered", () => {

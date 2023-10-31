@@ -1,16 +1,19 @@
 import { FRAMER_MOTION_ANIMATION } from "@/constants";
-import { getLocalization } from "@/utils";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import { useTranslations } from "next-intl";
+import { NextSeo } from "next-seo";
 import { Router } from "next/router";
 
 const Home: NextPage = () => {
-  const translate = useTranslations("Pages.home");
+  const translate = useTranslations();
+  const seo = useTranslations("SEO");
 
   return (
     <>
+      <NextSeo title={seo("title")} description={seo("description")} />
+
       <div className="relative header-background dark:header-background-dark">
         <header
           className={clsx(
@@ -70,11 +73,14 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getStaticProps(router: Router) {
+export async function getStaticProps({ locale }: Router) {
   return {
     props: {
-      locale: router.locale || "en",
-      localize: await getLocalization(router.locale)
+      locale: locale || "en",
+      localize: {
+        ...require(`@/localization/pages/index/${locale}.json`),
+        ...require(`@/localization/shared/${locale}.json`)
+      }
     }
   };
 }

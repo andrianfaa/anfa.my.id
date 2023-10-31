@@ -1,10 +1,10 @@
 // import { ComingSoon } from "@/components";
 import { FRAMER_MOTION_ANIMATION } from "@/constants";
-import { getLocalization } from "@/utils";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import { useTranslations } from "next-intl";
+import { NextSeo } from "next-seo";
 import { Router } from "next/router";
 
 type PageProps = {
@@ -13,10 +13,13 @@ type PageProps = {
 };
 
 const PortfolioPage: NextPage<PageProps> = () => {
-  const translate = useTranslations("Pages.portfolio");
+  const translate = useTranslations();
+  const seo = useTranslations("SEO");
 
   return (
     <>
+      <NextSeo title={seo("title")} description={seo("description")} />
+
       <div id="header-wrapper" className={clsx("dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950")}>
         <header
           className={clsx(
@@ -39,7 +42,7 @@ const PortfolioPage: NextPage<PageProps> = () => {
               "mb-4"
             )}
           >
-            {translate("heading")}
+            {translate("title")}
           </motion.h1>
 
           <motion.p
@@ -51,7 +54,7 @@ const PortfolioPage: NextPage<PageProps> = () => {
             }}
             className={clsx("md:max-w-xl")}
           >
-            {translate("subHeading")}
+            {translate("subtitle")}
           </motion.p>
 
           <motion.div
@@ -77,11 +80,14 @@ const PortfolioPage: NextPage<PageProps> = () => {
   );
 };
 
-export async function getStaticProps(router: Router) {
+export async function getStaticProps({ locale }: Router) {
   return {
     props: {
-      locale: router.locale || "en",
-      localize: await getLocalization(router.locale)
+      locale: locale || "en",
+      localize: {
+        ...require(`@/localization/pages/portfolio/${locale}.json`),
+        ...require(`@/localization/shared/${locale}.json`)
+      }
     }
   };
 }

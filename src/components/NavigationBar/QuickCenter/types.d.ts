@@ -1,7 +1,6 @@
 export interface QuickCenterParams {
   isOpen: boolean;
   onClickClose: () => void;
-  locale?: string;
   /**
    * Jest Testing ID
    */

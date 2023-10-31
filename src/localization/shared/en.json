@@ -1,0 +1,33 @@
+{
+  "NavigationBar": {
+    "Navigation": {
+      "about": "About",
+      "portfolio": "Portfolio",
+      "blog": "Blog",
+      "guestbook": "Guestbook"
+    },
+    "QuickCenter": {
+      "button": "Quick Center",
+      "Shortcut": {
+        "title": "TIP: Shortcut",
+        "subtitle": "Navigate the site with ease using keyboard shortcuts.",
+        "List": {
+          "openQuickCenter": "Open Quick Center",
+          "closeQuickCenter": "Close Quick Center",
+          "toggleDarkTheme": "Toggle Dark Theme"
+        }
+      },
+      "ActionCenter": {
+        "title": "ACTION CENTER",
+        "List": {
+          "darkTheme": "Dark Theme",
+          "github": "GitHub",
+          "language": "Language"
+        }
+      },
+      "Notification": {
+        "title": "NOTIFICATIONS"
+      }
+    }
+  }
+}

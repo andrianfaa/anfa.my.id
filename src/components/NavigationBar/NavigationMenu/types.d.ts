@@ -1,6 +1,5 @@
 export interface NavigationMenuParams {
   isOpen: boolean;
-  locale?: string;
   onClickClose: () => void;
   /**
    * Jest Testing ID

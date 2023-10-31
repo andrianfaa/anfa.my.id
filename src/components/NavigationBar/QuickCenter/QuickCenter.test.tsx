@@ -1,4 +1,3 @@
-import { getLocalization } from "@/utils";
 import { render, screen } from "@testing-library/react";
 import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import mockRouter from "next-router-mock";
@@ -17,7 +16,10 @@ describe("test `<QuickCenter />` component", () => {
   };
 
   beforeAll(async () => {
-    localize = await getLocalization("en");
+    localize = {
+      ...require(`../../../localization/pages/index/en.json`),
+      ...require(`../../../localization/shared/en.json`)
+    };
   });
 
   beforeEach(() => {

@@ -4,16 +4,18 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { FiChevronRight, FiGrid } from "react-icons/fi";
 import { NavigationMenu } from "./NavigationMenu";
 import { QuickCenter } from "./QuickCenter";
 import type { NavigationBarParams } from "./types";
 
-const NavigationBar = ({ testId, locale }: NavigationBarParams) => {
+const NavigationBar = ({ testId }: NavigationBarParams) => {
   const { systemTheme, theme } = useTheme();
   const { scrollPosition } = useWindow();
   const translate = useTranslations("NavigationBar");
+  const { locale } = useRouter();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openQuickCenter, setOpenQuickCenter] = useState<boolean>(false);
@@ -58,7 +60,7 @@ const NavigationBar = ({ testId, locale }: NavigationBarParams) => {
   return (
     <>
       <Portal>
-        <QuickCenter locale={locale} isOpen={openQuickCenter} onClickClose={() => setOpenQuickCenter(false)} />
+        <QuickCenter isOpen={openQuickCenter} onClickClose={() => setOpenQuickCenter(false)} />
       </Portal>
 
       <div
@@ -184,7 +186,7 @@ const NavigationBar = ({ testId, locale }: NavigationBarParams) => {
             <span className="icon"></span>
           </button>
 
-          <NavigationMenu locale={locale} isOpen={isOpen} onClickClose={() => setIsOpen(false)} />
+          <NavigationMenu isOpen={isOpen} onClickClose={() => setIsOpen(false)} />
         </div>
       </div>
     </>
