@@ -1,11 +1,11 @@
 import { ComingSoon } from "@/components";
+import { getLocalization } from "@/utils";
 import type { NextPage } from "next";
 import { Router } from "next/router";
 
 type PageProps = {
   locale: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  messages: any;
+  localize: unknown;
 };
 
 const AboutPage: NextPage<PageProps> = ({ locale }: PageProps) => {
@@ -20,8 +20,8 @@ export async function getStaticProps(router: Router) {
   return {
     props: {
       locale: router.locale || "en",
-      messages: (await import(`../messages/${router.locale}.json`)).default
-    } as PageProps
+      localize: await getLocalization(router.locale)
+    }
   };
 }
 

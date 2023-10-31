@@ -1,3 +1,4 @@
+import { getLocalization } from "@/utils";
 import { render, screen } from "@testing-library/react";
 import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import mockRouter from "next-router-mock";
@@ -6,7 +7,7 @@ import QuickCenter from "./QuickCenter.component";
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 describe("test `<QuickCenter />` component", () => {
-  let messages: AbstractIntlMessages | undefined = undefined;
+  let localize: AbstractIntlMessages | undefined = undefined;
 
   const state = {
     isOpen: true,
@@ -16,7 +17,7 @@ describe("test `<QuickCenter />` component", () => {
   };
 
   beforeAll(async () => {
-    messages = (await import("../../../messages/en.json")).default;
+    localize = await getLocalization("en");
   });
 
   beforeEach(() => {
@@ -25,7 +26,7 @@ describe("test `<QuickCenter />` component", () => {
 
   it("should be rendered", () => {
     render(
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider locale="en" messages={localize}>
         <QuickCenter
           isOpen={state.isOpen}
           onClickClose={state.setIsOpen}
@@ -43,7 +44,7 @@ describe("test `<QuickCenter />` component", () => {
 
   it("should be render button for change app theme", () => {
     render(
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider locale="en" messages={localize}>
         <QuickCenter
           isOpen={state.isOpen}
           onClickClose={state.setIsOpen}

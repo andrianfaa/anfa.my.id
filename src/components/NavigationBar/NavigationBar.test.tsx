@@ -1,17 +1,18 @@
+import { getLocalization } from "@/utils";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { NextIntlClientProvider, type AbstractIntlMessages } from "next-intl";
 import NavigationBar from "./NavigationBar.component";
 
 describe("test `<Navigation />` component", () => {
-  let messages: AbstractIntlMessages | undefined = undefined;
+  let localize: AbstractIntlMessages | undefined = undefined;
 
   beforeAll(async () => {
-    messages = (await import("../../messages/en.json")).default;
+    localize = await getLocalization("en");
   });
 
   it("should be rendered", () => {
     render(
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider locale="en" messages={localize}>
         <NavigationBar
           testId={{
             parent: "navigation-parent"
@@ -27,7 +28,7 @@ describe("test `<Navigation />` component", () => {
 
   it("should render navigation toggler", () => {
     render(
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider locale="en" messages={localize}>
         <NavigationBar
           testId={{
             toggler: "navigation-toggler"
@@ -43,7 +44,7 @@ describe("test `<Navigation />` component", () => {
 
   it('should contain class "opened" when the navigation toggler is clicked', () => {
     render(
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider locale="en" messages={localize}>
         <NavigationBar
           testId={{
             toggler: "navigation-toggler"
