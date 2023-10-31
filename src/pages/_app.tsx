@@ -1,40 +1,27 @@
 import { NavigationBar } from "@/components";
-import clsx from "clsx";
 import { NextIntlClientProvider } from "next-intl";
+import { DefaultSeo, type DefaultSeoProps } from "next-seo";
 import { ThemeProvider } from "next-themes";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 import "@/styles/root.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { events } = useRouter();
-
-  const [playAnimation, setPlayAnimation] = useState<boolean>(false);
-
-  useEffect(() => {
-    events.on("routeChangeComplete", () => setPlayAnimation(false));
-    events.on("routeChangeStart", () => setPlayAnimation(true));
-
-    return () => {
-      events.off("routeChangeStart", () => setPlayAnimation(true));
-      events.off("routeChangeComplete", () => setPlayAnimation(false));
-    };
-  }, [events]);
+  const defaultSeo: DefaultSeoProps = {
+    title: pageProps.localize.seo.title || "Andrian Fadhilla - Computer Science Student and React Developer",
+    description:
+      pageProps.localize.seo.description ||
+      "a Computer Science Student and also Freelance React Developer based in Bekasi, Indonesia"
+  };
 
   return (
     <NextIntlClientProvider messages={pageProps.localize}>
+      <DefaultSeo {...defaultSeo} />
+
       <ThemeProvider attribute="class">
         <NavigationBar locale={pageProps.locale || "en"} />
 
-        <main
-          className={clsx(
-            playAnimation
-              ? "-translate-y-6 opacity-0"
-              : "transition-all duration-300 ease-in-out opacity-100 translate-y-0"
-          )}
-        >
+        <main>
           <Component {...pageProps} />
         </main>
       </ThemeProvider>

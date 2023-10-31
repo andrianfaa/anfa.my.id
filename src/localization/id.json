@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Andrian Fadhilla - Mahasiswa Ilmu Komputer dan React Developer",
+    "description": "Seorang Mahasiswa Ilmu Komputer dan juga Freelance React Developer yang berbasis di Bekasi, Indonesia."
+  },
   "NavigationBar": {
     "NavigationLink": {
       "about": "Tentang",
@@ -35,6 +39,10 @@
       "title": "Halo!<wavehand></wavehand><block>Saya Andrian Fadhilla.</block>",
       "subtitle": "Seorang Mahasiswa Ilmu Komputer dan juga Freelance React Developer yang berbasis di Bekasi, Indonesia.",
       "ctaButtonText": "Pelajari lebih lanjut tentang saya"
+    },
+    "portfolio": {
+      "heading": "Portofolio.",
+      "subHeading": "Daftar semua project yang pernah saya buat, mulai dari project sekadar untuk kesenangan hingga project profesional"
     }
   }
 }

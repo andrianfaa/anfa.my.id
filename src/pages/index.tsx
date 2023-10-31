@@ -1,6 +1,7 @@
+import { FRAMER_MOTION_ANIMATION } from "@/constants";
 import { getLocalization } from "@/utils";
 import clsx from "clsx";
-import { AnimationProps, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import { Router } from "next/router";
@@ -8,23 +9,9 @@ import { Router } from "next/router";
 const Home: NextPage = () => {
   const translate = useTranslations("Pages.home");
 
-  const animation = {
-    initial: {
-      opacity: 0,
-      translateY: 25
-    } as AnimationProps["initial"],
-    animate: {
-      opacity: 100,
-      translateY: 0
-    } as AnimationProps["animate"],
-    transition: {
-      duration: 0.25
-    } as AnimationProps["transition"]
-  };
-
   return (
     <>
-      <div className="relative">
+      <div className="relative header-background dark:header-background-dark">
         <header
           className={clsx(
             "container min-h-screen lg:min-h-[unset] lg:h-screen z-[1] !max-h-[720px]",
@@ -34,11 +21,11 @@ const Home: NextPage = () => {
           )}
         >
           <motion.h1
-            initial={animation.initial}
-            animate={animation.animate}
+            initial={FRAMER_MOTION_ANIMATION.initial}
+            animate={FRAMER_MOTION_ANIMATION.animate}
             transition={{
               delay: 0.1,
-              ...animation.transition
+              ...FRAMER_MOTION_ANIMATION.transition
             }}
             className={clsx(
               "font-bold text-4xl leading-[1.25] text-gray-900 dark:text-white md:text-5xl lg:text-6xl",
@@ -52,11 +39,11 @@ const Home: NextPage = () => {
           </motion.h1>
 
           <motion.p
-            initial={animation.initial}
-            animate={animation.animate}
+            initial={FRAMER_MOTION_ANIMATION.initial}
+            animate={FRAMER_MOTION_ANIMATION.animate}
             transition={{
               delay: 0.2,
-              ...animation.transition
+              ...FRAMER_MOTION_ANIMATION.transition
             }}
             className={clsx("mb-4", "max-w-xl lg:max-w-2xl", "text-base md:text-lg lg:text-xl")}
           >
@@ -64,11 +51,11 @@ const Home: NextPage = () => {
           </motion.p>
 
           <motion.button
-            initial={animation.initial}
-            animate={animation.animate}
+            initial={FRAMER_MOTION_ANIMATION.initial}
+            animate={FRAMER_MOTION_ANIMATION.animate}
             transition={{
               delay: 0.3,
-              ...animation.transition
+              ...FRAMER_MOTION_ANIMATION.transition
             }}
             type="button"
             className={clsx("button button-default", "py-4 px-6", "rounded-lg", "font-semibold")}
