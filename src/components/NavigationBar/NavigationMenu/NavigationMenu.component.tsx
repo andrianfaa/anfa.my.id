@@ -1,30 +1,33 @@
 import clsx from "clsx";
-import Link from "next/link";
-import { FiX } from "react-icons/fi";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FiX } from "react-icons/fi";
 import type { NavigationMenuParams } from "./types";
 
-const NavigationMenu = ({ isOpen, locale, onClickClose }: NavigationMenuParams) => {
+const NavigationMenu = ({ isOpen, onClickClose }: NavigationMenuParams) => {
   const translate = useTranslations("NavigationBar");
+  const { locale } = useRouter();
+
   const menu = [
     {
-      title: translate("NavigationLink.about"),
+      title: translate("Navigation.about"),
       url: "/about",
       transitionDelay: "100ms"
     },
     {
-      title: translate("NavigationLink.portfolio"),
+      title: translate("Navigation.portfolio"),
       url: "/portfolio",
       transitionDelay: "200ms"
     },
     {
-      title: translate("NavigationLink.medium"),
+      title: translate("Navigation.blog"),
       url: "https://medium.com/@andrianfaa",
       isOpenInNewTab: true,
       transitionDelay: "300ms"
     },
     {
-      title: translate("NavigationLink.guestbook"),
+      title: translate("Navigation.guestbook"),
       url: "/guestbook",
       transitionDelay: "400ms"
     }

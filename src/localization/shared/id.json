@@ -1,0 +1,33 @@
+{
+  "NavigationBar": {
+    "Navigation": {
+      "about": "Tentang",
+      "portfolio": "Portofolio",
+      "blog": "Blog",
+      "guestbook": "Buku Tamu"
+    },
+    "QuickCenter": {
+      "button": "Pusat Cepat",
+      "Shortcut": {
+        "title": "TIP: Jalan Pintas",
+        "subtitle": "Navigasikan situs dengan mudah menggunakan pintasan keyboard.",
+        "List": {
+          "openQuickCenter": "Buka Pusat Cepat",
+          "closeQuickCenter": "Tutup Pusat Cepat",
+          "toggleDarkTheme": "Alihkan Tema Gelap"
+        }
+      },
+      "ActionCenter": {
+        "title": "PUSAT AKSI",
+        "List": {
+          "darkTheme": "Tema Gelap",
+          "github": "GitHub",
+          "language": "Bahasa"
+        }
+      },
+      "Notification": {
+        "title": "NOTIFIKASI"
+      }
+    }
+  }
+}

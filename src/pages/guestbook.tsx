@@ -1,26 +1,25 @@
 import { ComingSoon } from "@/components";
-import { getLocalization } from "@/utils";
 import type { NextPage } from "next";
-import { Router } from "next/router";
+import { Router, useRouter } from "next/router";
 
-type PageProps = {
-  locale: string;
-  localize: unknown;
-};
+const GuestbookPage: NextPage = () => {
+  const { locale } = useRouter();
 
-const GuestbookPage: NextPage<PageProps> = ({ locale }: PageProps) => {
   return (
     <>
-      <ComingSoon locale={locale} />
+      <ComingSoon locale={locale || "en"} />
     </>
   );
 };
 
-export async function getStaticProps(router: Router) {
+export async function getStaticProps({ locale }: Router) {
   return {
     props: {
-      locale: router.locale || "en",
-      localize: await getLocalization(router.locale)
+      locale: locale || "en",
+      localize: {
+        ...require(`@/localization/pages/index/${locale}.json`),
+        ...require(`@/localization/shared/${locale}.json`)
+      }
     }
   };
 }

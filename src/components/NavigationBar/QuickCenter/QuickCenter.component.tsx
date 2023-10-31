@@ -10,9 +10,9 @@ import { FiSun, FiX } from "react-icons/fi";
 import { MdKeyboard } from "react-icons/md";
 import type { QuickCenterParams } from "./types";
 
-const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams) => {
+const QuickCenter = ({ isOpen, onClickClose, testId }: QuickCenterParams) => {
   const { systemTheme, theme, setTheme } = useTheme();
-  const { route } = useRouter();
+  const { route, locale } = useRouter();
   const translate = useTranslations("NavigationBar.QuickCenter");
 
   const currentTheme = theme === "system" ? systemTheme : theme;
@@ -34,17 +34,17 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
 
   const KEYBOARD_SHORTCUT = [
     {
-      title: translate("shortcut.list.openQuickCenter"),
+      title: translate("Shortcut.List.openQuickCenter"),
       shortcut: ["Q"],
       animationDelay: 0.1
     },
     {
-      title: translate("shortcut.list.closeQuickCenter"),
+      title: translate("Shortcut.List.closeQuickCenter"),
       shortcut: ["Esc"],
       animationDelay: 0.2
     },
     {
-      title: translate("shortcut.list.toggleDarkTheme"),
+      title: translate("Shortcut.List.toggleDarkTheme"),
       shortcut: ["Alt", "T"],
       animationDelay: 0.3
     }
@@ -169,7 +169,7 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
                   </div>
 
                   <p className="text-sm">
-                    {translate("ActionCenter.list.darkTheme")}:{" "}
+                    {translate("ActionCenter.List.darkTheme")}:{" "}
                     <span className={clsx("font-bold", currentTheme === "dark" ? "text-gray-100" : "text-gray-900")}>
                       {currentTheme === "dark" ? "On" : "Off"}
                     </span>
@@ -187,7 +187,7 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
                 >
                   <BsGithub className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
 
-                  <p className="text-sm">{translate("ActionCenter.list.github")}</p>
+                  <p className="text-sm">{translate("ActionCenter.List.github")}</p>
                 </Link>
 
                 {/* Language */}
@@ -201,7 +201,7 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
                   <BsTranslate className={clsx("h-4 w-4", "mb-4", "text-gray-900 dark:text-gray-100")} />
 
                   <p className="text-sm">
-                    {translate("ActionCenter.list.language")}:{" "}
+                    {translate("ActionCenter.List.language")}:{" "}
                     <span className={clsx("font-bold", currentTheme === "dark" ? "text-gray-100" : "text-gray-900")}>
                       {locale === "en" ? "EN" : "ID"}
                     </span>
@@ -215,7 +215,7 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
                 transition={{ ...animation.transition, delay: 0.3 }}
                 className={clsx("font-bold text-gray-900 dark:text-gray-100 uppercase")}
               >
-                {translate("notification.title")}
+                {translate("Notification.title")}
               </motion.p>
 
               <motion.div
@@ -258,9 +258,9 @@ const QuickCenter = ({ isOpen, onClickClose, locale, testId }: QuickCenterParams
                   )}
                 >
                   <MdKeyboard className={clsx("h-8 w-8", "mr-3")} />
-                  {translate("shortcut.title")}
+                  {translate("Shortcut.title")}
                 </p>
-                <p className="mb-4">{translate("shortcut.subtitle")}</p>
+                <p className="mb-4">{translate("Shortcut.subtitle")}</p>
 
                 <ul className={clsx("list-none")}>
                   {KEYBOARD_SHORTCUT.map(({ title, shortcut, animationDelay }, index) => {

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint \"./src/**/*.{ts,tsx}\"",
     "prettier": "prettier --config \"./.prettierrc.json\" \"./src/**/*.{ts,tsx,scss}\" --write",
-    "test": "jest --watch",
+    "test": "jest --watch --all",
     "test:ci": "jest --ci"
   },
   "dependencies": {

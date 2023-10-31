@@ -8,18 +8,22 @@ import "@/styles/root.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const defaultSeo: DefaultSeoProps = {
-    title: pageProps.localize?.seo?.title || "Andrian Fadhilla - Computer Science Student and React Developer",
-    description:
-      pageProps.localize?.seo?.description ||
-      "a Computer Science Student and also Freelance React Developer based in Bekasi, Indonesia"
+    title: "Andrian Fadhilla - Computer Science Student and React Developer",
+    description: "a Computer Science Student and also Freelance React Developer based in Bekasi, Indonesia"
   };
 
   return (
-    <NextIntlClientProvider messages={pageProps.localize}>
+    <NextIntlClientProvider
+      locale={pageProps.locale}
+      messages={pageProps.localize}
+      onError={({ code }) => {
+        if (code === "MISSING_MESSAGE") return;
+      }}
+    >
       <DefaultSeo {...defaultSeo} />
 
       <ThemeProvider attribute="class">
-        <NavigationBar locale={pageProps.locale || "en"} />
+        <NavigationBar />
 
         <main>
           <Component {...pageProps} />
