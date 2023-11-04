@@ -78,64 +78,51 @@ const NavigationBar = ({ testId }: NavigationBarParams) => {
             <Link href={"/"} className={clsx("flex flex-row items-center justify-start")} title="Anfa logo">
               {/* Logo */}
               <svg
-                width="53"
-                height="53"
-                viewBox="0 0 53 53"
-                className={clsx("w-10 h-10 lg:w-11 lg:h-11")}
+                width="1303"
+                height="1311"
+                viewBox="0 0 1303 1311"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className={clsx("w-10 h-10 lg:w-11 lg:h-11")}
                 data-testid={testId?.logo}
               >
                 <path
-                  d="M3 48.5L27 5.5L33 16.5L51 48.5H40.5L36 40.5L27.5 26L14.5 48.5H3Z"
-                  fill="url(#paint0_linear_2_22)"
-                  fillOpacity="0.25"
+                  d="M739.921 54.0706H436.379L51.9755 1168.44H305.871L388.627 914.107H790.761L873.635 1168.44H1125.39L739.921 54.0706Z"
+                  stroke={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                  strokeWidth="40"
                 />
                 <path
-                  d="M31.8966 33.5H22.5L19 40.5H36L31.8966 33.5Z"
-                  fill="url(#paint1_linear_2_22)"
-                  fillOpacity="0.25"
+                  d="M730.754 730.165L589.927 298.222L448.657 730.165H730.754Z"
+                  stroke={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                  strokeWidth="40"
                 />
                 <path
-                  d="M19 40.5152H35.9697L40.3333 48.5152H51L33.0606 15.9091M19 40.5152L14.6364 48.5152H3L27.1212 5L33.0606 15.9091M19 40.5152L22.8788 33.3636M22.8788 33.3636H31.9697L27.4848 25.4848M22.8788 33.3636L27.4848 25.4848M27.4848 25.4848L33.0606 15.9091"
-                  stroke="url(#paint2_linear_2_22)"
-                  strokeLinecap="round"
+                  d="M1251.02 1258.64L866.837 144.755L752.671 52.3644L739.595 60.2095C884.994 499.53 990.132 762.466 1135.53 1201.79L907.986 1202.99L991.168 1258.64H1251.02Z"
+                  fill={currentTheme === "dark" ? "#ffffff" : "#030712"}
                 />
-                <defs>
-                  <linearGradient
-                    id="paint0_linear_2_22"
-                    x1="51.5"
-                    y1="48.5"
-                    x2="3.5"
-                    y2="5.5"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                    <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                  </linearGradient>
-                  <linearGradient
-                    id="paint1_linear_2_22"
-                    x1="51.5"
-                    y1="48.5"
-                    x2="3.5"
-                    y2="5.5"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                    <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                  </linearGradient>
-                  <linearGradient
-                    id="paint2_linear_2_22"
-                    x1="2.85585"
-                    y1="48.5152"
-                    x2="49.6632"
-                    y2="3.47095"
-                    gradientUnits="userSpaceOnUse"
-                  >
-                    <stop offset={0} stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                    <stop offset="1" stopColor={currentTheme === "dark" ? "#ffffff" : "#030712"} />
-                  </linearGradient>
-                </defs>
+                <path
+                  d="M608.217 728.042L666.488 548.026L590.528 305.576L453.174 728.042H608.217Z"
+                  fill={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                />
+                <path
+                  d="M517.042 1003.79H819.589L795.007 926.332H401.231L315.509 1201.79H75.9444L171.183 1258.64H435.708L517.042 1003.79Z"
+                  fill={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                />
+                <path
+                  d="M1251.02 1258.64L866.837 144.755L752.671 52.3644L739.595 60.2095C884.994 499.53 990.132 762.466 1135.53 1201.79L907.986 1202.99L991.168 1258.64H1251.02Z"
+                  stroke={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                  strokeWidth="30"
+                />
+                <path
+                  d="M608.217 728.042L666.488 548.026L590.528 305.576L453.174 728.042H608.217Z"
+                  stroke={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                  strokeWidth="30"
+                />
+                <path
+                  d="M517.042 1003.79H819.589L795.007 926.332H401.231L315.509 1201.79H75.9444L171.183 1258.64H435.708L517.042 1003.79Z"
+                  stroke={currentTheme === "dark" ? "#ffffff" : "#030712"}
+                  strokeWidth="30"
+                />
               </svg>
             </Link>
 
