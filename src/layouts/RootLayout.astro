@@ -1,0 +1,36 @@
+---
+import { SEO } from 'astro-seo';
+import { type SEOProps } from 'astro-seo'
+
+import "@/styles/root.scss";
+
+interface Props extends SEOProps {}
+
+const props = Astro.props;
+
+const defaultSEO: SEOProps = {
+  title: props.title || "Andrian Fadhilla (@andrianfaa) - Frontend Developer",
+  description: props.description || "a Computer Science Student and also Freelance Frontend Developer (Especially React.js) based in Bekasi, Indonesia",
+  ...props
+}
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      {...defaultSEO}
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
