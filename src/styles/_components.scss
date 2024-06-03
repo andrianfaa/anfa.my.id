@@ -1,0 +1,22 @@
+@layer components {
+  .container {
+    @apply mx-auto max-w-96 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-7xl;
+  }
+
+  .navbar {
+    @apply bg-transparent;
+
+    &-container {
+      @apply mx-auto max-w-96 sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1440px];
+    }
+
+    &.scrolled {
+      @apply bg-gray-950;
+      @apply border-b border-b-gray-800;
+
+      @supports (backdrop-filter: blur(16px)) {
+        @apply bg-gray-950/50 backdrop-blur-lg;
+      }
+    }
+  }
+}

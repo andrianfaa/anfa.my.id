@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zinc-900;
-  @apply text-slate-50;
+  @apply bg-gray-950;
+  @apply text-gray-400;
 }
+
+@import "./components";

@@ -1,0 +1,28 @@
+---
+import { Layout } from "@/layouts";
+import { cn } from "@/utils";
+
+export async function getStaticPaths() {
+  return [];
+}
+---
+
+<Layout title="404 - Page Not Found" description="Page not found">
+  <main
+    class={cn(
+      "p-4",
+      "flex flex-col items-center justify-center",
+      "h-screen w-full"
+    )}
+  >
+    <h1 class="text-center">
+      <span
+        class={cn("block", "text-6xl md:text-8xl font-bold text-white", "mb-4")}
+        >404</span
+      >
+      <span class={cn("text-base md:text-lg font-light text-center text-white")}
+        >Page not found</span
+      >
+    </h1>
+  </main>
+</Layout>

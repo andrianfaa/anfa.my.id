@@ -1,6 +1,7 @@
 ---
-import { SEO } from 'astro-seo';
-import { type SEOProps } from 'astro-seo'
+import { SEO, type SEOProps } from "astro-seo";
+
+import { Navbar } from "@/components/navbar";
 
 import "@/styles/root.scss";
 
@@ -10,10 +11,11 @@ const props = Astro.props;
 
 const defaultSEO: SEOProps = {
   title: props.title || "Andrian Fadhilla (@andrianfaa) - Frontend Developer",
-  description: props.description || "a Computer Science Student and also Freelance Frontend Developer (Especially React.js) based in Bekasi, Indonesia",
+  description:
+    props.description ||
+    "a Computer Science Student and also Freelance Frontend Developer (Especially React.js) based in Bekasi, Indonesia",
   ...props
-}
-
+};
 ---
 
 <!doctype html>
@@ -24,13 +26,12 @@ const defaultSEO: SEOProps = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO
-      {...defaultSEO}
-    />
+    <SEO {...defaultSEO} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <Navbar client:load />
     <slot />
   </body>
 </html>

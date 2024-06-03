@@ -2,14 +2,14 @@ import { cn } from "@/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 
-const buttonVariant = cva(cn(""), {
+const buttonVariant = cva(cn("transition-all duration-300 ease-in-out"), {
   variants: {
     variant: {
-      primary: cn(),
+      primary: cn("bg-primary text-white hover:bg-primary/90"),
       base: cn()
     },
     size: {
-      small: cn(),
+      small: cn("text-sm px-2 py-1"),
       medium: cn(),
       large: cn()
     }

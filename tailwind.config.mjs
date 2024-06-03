@@ -7,6 +7,13 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Arimo Variable", ...defaultTheme.fontFamily.sans]
+      },
+      colors: {
+        primary: "#818cf8",
+        border: {
+          DEFAULT: "#262626",
+          700: "#404040"
+        }
       }
     }
   }
