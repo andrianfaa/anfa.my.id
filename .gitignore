@@ -1,0 +1,5 @@
+# All development files and directories
+node_modules
+dist
+build
+.parcel-cache

@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// * {
+//   @apply leading-normal;
+// }
+
+body {
+  @apply dark:bg-[#0a0c0f] bg-slate-50;
+  @apply text-gray-600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-gray-900;
+}
+
+html,
+body,
+main > div {
+  @apply scroll-mt-10 scroll-smooth;
+}
+
+.container {
+  @apply max-w-md sm:max-w-lg md:max-w-xl lg:max-w-[960px];
+  @apply mx-auto;
+}
+
+.navbar {
+  @apply fixed z-40 top-4 md:top-6 lg:top-8 left-1/2 -translate-x-1/2;
+  @apply bg-[#0a0c0f]/90 backdrop-blur;
+  @apply border border-white/10 rounded-full;
+  @apply p-1;
+
+  & > .overlay {
+    @apply absolute top-[3px] -z-10 h-9 bg-white/15;
+    @apply rounded-full;
+    @apply w-[78px];
+  }
+
+  ul {
+    @apply flex flex-row gap-1;
+    @apply z-0;
+
+    a {
+      @apply block;
+      // @apply block w-20;
+      @apply py-2 px-4 rounded-full;
+      @apply text-white text-center leading-relaxed text-sm md:text-base;
+      @apply hover:bg-white/5;
+      @apply transition-all duration-200 ease-in-out;
+    }
+  }
+}
+
+[data-icon] {
+  @apply cursor-pointer;
+}
+
+header #cards {
+  @apply relative md:h-48 flex flex-col md:flex-row md:items-start items-center justify-center pt-10 text-left overflow-hidden;
+
+  .card {
+    @apply cursor-pointer;
+    @apply md:transition-all md:duration-300 md:ease-in-out;
+    @apply shadow-2xl bg-slate-50 border p-4 max-w-72 md:max-w-[270px] md:h-72;
+    @apply flex flex-row items-start gap-4;
+    @apply md:translate-y-[100px] opacity-0;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: var(--tw-delay);
+
+    @apply md:hover:-translate-y-4 md:focus:-translate-y-4;
+
+    &:nth-child(1) {
+      --tw-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      --tw-delay: 0.2s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) rotate(var(--tw-rotate));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--tw-rotate));
+  }
+}
+
+// Tippy.js
+.tippy-box[data-theme~="black"] {
+  @apply bg-gray-900 text-slate-50;
+
+  .tippy-arrow {
+    @apply text-gray-900;
+  }
+
+  .tippy-content {
+    @apply font-sans font-semibold text-xs md:text-sm;
+  }
+}
