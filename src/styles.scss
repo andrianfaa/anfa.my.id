@@ -26,6 +26,11 @@ main > div {
   @apply scroll-mt-10 scroll-smooth;
 }
 
+.link {
+  @apply hover:text-gray-800 focus:text-gray-800;
+  @apply hover:underline focus:underline;
+}
+
 .container {
   @apply max-w-md sm:max-w-lg md:max-w-xl lg:max-w-[960px];
   @apply mx-auto;
