@@ -10,9 +10,6 @@ jobs:
   prettier:
     name: Run Prettier on all files
     runs-on: ubuntu-latest
-    permission:
-      contents: read
-      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
