@@ -38,7 +38,8 @@ main > div {
 
 .navbar {
   @apply fixed z-40 top-4 md:top-6 lg:top-8 left-1/2 -translate-x-1/2;
-  @apply bg-[#0a0c0f]/90 backdrop-blur;
+  @apply bg-gray-900 backdrop-blur shadow-lg;
+  // @apply bg-[#0a0c0f]/90 backdrop-blur;
   @apply border border-white/10 rounded-full;
   @apply p-1;
 
@@ -56,7 +57,7 @@ main > div {
       @apply block;
       // @apply block w-20;
       @apply py-2 px-4 rounded-full;
-      @apply text-white text-center leading-relaxed text-sm md:text-base;
+      @apply text-gray-50 text-center leading-relaxed text-sm md:text-base;
       @apply hover:bg-white/5;
       @apply transition-all duration-200 ease-in-out;
     }
